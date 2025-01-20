@@ -11,4 +11,3 @@ router.put("/:id", requiredLogin, userController.update); // Corrigido de "put/:
 router.delete("/:id", requiredLogin, userController.delete); // Corrigido de "delete/:id" para "/:id"
 
 module.exports = router;
-

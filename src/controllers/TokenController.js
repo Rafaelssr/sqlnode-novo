@@ -40,7 +40,6 @@ class TokenController {
 
       return res.json(user);
     } catch (error) {
-      console.log(error);
       res.status(400).json(error);
     }
   }
