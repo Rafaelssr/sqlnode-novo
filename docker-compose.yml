@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "Postgres2022!"
+      POSTGRES_USER: "sqlnode"
+      POSTGRES_DB: "sqlnode"
+    ports:
+      - "5432:5432"
