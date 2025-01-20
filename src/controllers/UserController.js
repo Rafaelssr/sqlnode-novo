@@ -11,7 +11,7 @@ class UserController {
     }
   }
 
-  async index(req, res) {
+  async index(res) {
     try {
       const indexUsers = await userService.listUsers();
 

@@ -3,7 +3,6 @@ const User = require("../models/User");
 class UserService {
   async createUser(info) {
     try {
-      console.log(info, "info");
 
       const createdUser = await User.create(info);
 
@@ -20,7 +19,6 @@ class UserService {
 
   async listUsers() { // funcionando corretamente
     try {
-      console.log("entrei no service");
       const users = await User.findAll();
       if (!users) {
         throw new Error("Não foi possível listar os usuários");
