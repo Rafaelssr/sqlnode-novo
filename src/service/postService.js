@@ -20,13 +20,13 @@ class PostService {
             throw new Error("O usuário não existe.")
         }
         else {
-            return await PostService.findOne(id);
+            return await Post.findAll(id);
         }
     }
     async updatePost(id, info) {
         const post = Post.findByPk(id);
         if (!post) {
-            throw new Error("O post em questão não existe.")
+            throw new Error("O post em questão não existe.");
         } else {
             const updatedPost = Post.update(info);
             return updatedPost;
