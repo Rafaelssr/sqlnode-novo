@@ -46,6 +46,6 @@ class Post extends Model {
 	static associate(models) {
 		Post.belongsTo(models.User, { foreignKey: "id", as: "user" });
 	}
-	}
+}
 
 module.exports = Post;

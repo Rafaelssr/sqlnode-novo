@@ -1,11 +1,12 @@
 const yup = require("yup");
 
-const userSchema = yup.object().shape({
-	name: yup.string().required("É necessário informar um nome válido"),
-	email: yup.string().email("O email não é válido").required(),
-	password: yup.string("A senha não é válida").required().min(6),
-})
-
+const userSchema = {
+	storeUser:
+		yup.object().shape({
+		name: yup.string().min(4).max(30).required("É necessário inserir o nome do usuário."),
+		email: yup.string().min(16).max(30).required("É necessário informar um email."),
+		password: yup.string().min(6).required("É necessário informar uma senha."),
+		}).noUnknown(),
+}
+console.log(userSchema);
 module.exports = userSchema;
-
-// post_id , user_id --> referenciar em ambas as tabelas

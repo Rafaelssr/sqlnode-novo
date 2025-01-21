@@ -15,9 +15,8 @@ module.exports = (req, res, next) => {
     const { id, email } = verified;
     req.user = { id, email };
 
-    next();
+    return next();
   } catch (error) {
     throw new Error(error);
   }
 };
-
