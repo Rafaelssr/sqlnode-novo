@@ -21,7 +21,7 @@ class TokenController {
 
       if (!user.validPassword(password)) {
         res.status(401).json({
-          errors: "Senha inválida"
+          errors: ["Senha inválida"]
         });
       } else {
         const token = jwt.sign(

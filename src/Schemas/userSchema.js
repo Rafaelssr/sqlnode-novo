@@ -10,14 +10,17 @@ const userSchema = {
         .max(30)
         .required("É necessário inserir o nome do usuário."),
       email: yup
-		  .string()
-		  .email("Necessário fornecer um email válido")
-        .min(16)
+		.string()
+		.email("Necessário fornecer um email válido")
         .max(30)
-        .required("É necessário informar um email."),
-      password: yup.string().min(6).required("É necessário informar uma senha.")
+        .required(),
+		password:
+			yup
+			.string()
+			.min(6)
+			.required("É necessário informar uma senha.")
     })
-    .noUnknown(true, "O objeto contém campos não permitidos")
+    .noUnknown(true)
 };
 
 module.exports = userSchema;

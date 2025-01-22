@@ -1,24 +1,26 @@
 const validateSchema = (schema) => {
   return async (req, res, next) => {
     try {
-      console.log("Requisição recebida:", req.body);
+      console.log("req.body :", req.body);
+      const reqElements = [
+        { data: req.body },
+        { data: req.params },
+        { data: req.query }
+	  ];
 
-      if (req.body) {
-        await schema.validate(req.body, { abortEarly: false });
-        console.log("funcionou!");
-      }
-      if (req.params) {
-        await schema.validate(req.params, { abortEarly: false });
-      }
-      if (req.query) {
-        await schema.validate(req.query, { abortEarly: false });
+      const validateElement = reqElements.forEach(element =>
+        Object.keys(element.data).length > 0
+      );
+      if (validateElement) {
+        await schema.validate(validateElement.data, { abortEarly: false });
       }
 
       return next();
     } catch (error) {
+      console.log("erro!");
       return res.status(400).json({
-        errors: error.errors || ["Erro na validação dos dados"]
-      });
+		  errors:['Erro!']
+	  });
     }
   };
 };

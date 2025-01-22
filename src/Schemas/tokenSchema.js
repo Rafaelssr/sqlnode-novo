@@ -10,7 +10,7 @@ const tokenSchema = {
           .string()
           .required("É necessário informar a senha do usuário")
       })
-      .noUnknown()
+      .noUnknown(true)
   }
 };
 

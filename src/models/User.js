@@ -20,7 +20,7 @@ class User extends Model {
         password: {
           type: Sequelize.STRING,
           defaultValue: ""
-        }
+        },
       },
       {
         sequelize,
@@ -44,7 +44,7 @@ class User extends Model {
     return this;
   }
   static associate(models) {
-    User.hasMany(models.Post, { foreignKey: "id", as: "posts" });
+	  User.hasMany(models.Post, { foreignKey: "id", as: "posts" });
   }
 }
 

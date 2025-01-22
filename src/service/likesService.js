@@ -1,0 +1,1 @@
+const Like = require("../controller/Like");
