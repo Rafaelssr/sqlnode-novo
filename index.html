@@ -3,19 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="css" href="FrontEnd/index.css" />
+    <link rel="stylesheet" href="./FrontEnd/index.css" />
     <title>Lista Telefônica</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script>
-      angular.module("ListaTelefônica", []);
-      angular.module("ListaTelefônica").controller("LTcontroller", ($scope) => {
+      const app = angular.module("ListaTelefônica", []);
+      app.controller("LTcontroller", ($scope) => {
         $scope.app = "Lista Telefônica";
+        $scope.contatos = [
+          { nome: "Arruda", telefone: "99898767" },
+          { nome: "Renato", telefone: "988549384" },
+          { nome: "Miguel", telefone: "987676076" }
+        ];
+        $scope.addContact = function (contato) {
+          $scope.contatos.push(angular.copy(contato));
+          delete $scope.contato;
+        };
       });
     </script>
   </head>
   <body>
-    <div ng-class="LTinitial" ng-controller="LTcontroller">
+    <div ng-controller="LTcontroller">
       <h4>{{app}}</h4>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+        </tr>
+        <tr ng-repeat="contato in contatos">
+          <td>{{contato.nome}}</td>
+          <td>{{contato.telefone}}</td>
+        </tr>
+      </table>
+      <div>
+        <input
+          class="inputFields"
+          type="text"
+          ng-model="contato.nome"
+          placeholder="Nome"
+        />
+        <input
+          class="inputFields"
+          type="text"
+          ng-model="contato.telefone"
+          placeholder="Telefone"
+        />
+        <button ng-click="addContact(contato)">Adicionar Contato</button>
+        {{contato}}
+      </div>
     </div>
   </body>
 </html>
