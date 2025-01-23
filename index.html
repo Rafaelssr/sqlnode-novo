@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="ListaTelefônica" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="css" href="FrontEnd/index.css" />
+    <title>Lista Telefônica</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      angular.module("ListaTelefônica", []);
+      angular.module("ListaTelefônica").controller("LTcontroller", ($scope) => {
+        $scope.app = "Lista Telefônica";
+      });
+    </script>
+  </head>
+  <body>
+    <div ng-class="LTinitial" ng-controller="LTcontroller">
+      <h4>{{app}}</h4>
+    </div>
+  </body>
+</html>
