@@ -8,3 +8,27 @@ body{
 	display:flex;
 	justify-content: center;
 }
+
+.home-header{
+	display:flex;
+	align-items: center;
+}
+
+.logo-img{
+	width:40px;
+	height:40px;
+	margin-left:1em;
+}
+
+.homePage-searchBar{
+	border-radius: 2em;
+	padding: 3px;
+	margin-left:0.5em;
+	background-color: rgb(243, 235, 235);
+}
+
+.black {
+	width: 20%;
+	height: 30%;
+	background-color: black;
+}
