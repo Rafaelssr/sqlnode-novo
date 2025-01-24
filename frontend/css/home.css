@@ -1,6 +1,7 @@
 .home-header{
 	display:flex;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .logo-img{
@@ -14,10 +15,4 @@
 	padding: 3px;
 	margin-left:0.5em;
 	background-color: rgb(243, 235, 235);
-}
-
-.black {
-	width: 20%;
-	height: 30%;
-	background-color: black;
 }
