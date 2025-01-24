@@ -1,0 +1,10 @@
+.inputFields{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom:5px;
+}
+
+body{
+	display:flex;
+	justify-content: center;
+}
