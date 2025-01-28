@@ -1,4 +1,4 @@
-<div class="doca">
+<div>
   <nav>
     <div class="home-header">
       <div>
@@ -11,13 +11,10 @@
           <span ng-click="onWriteClick()">write</span>
         </div>
         <i class="fa-regular fa-bell"></i>
-        <i class="fa-regular fa-user" ng-click="onProfileIconClick()"></i>
+        <i class="fa-regular fa-user" ui-sref="login"></i>
       </div>
     </div>
   </nav>
 </div>
 
-<div
-  ng-include="profileModal.html"
-  ng-show="showModal"
-></div>
+<profile-modal ng-show="profileModal"></profile-modal>

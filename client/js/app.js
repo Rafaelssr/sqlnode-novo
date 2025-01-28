@@ -1,28 +1,25 @@
 /* eslint-disable no-undef */
-const myApp = angular.module("MediumAPI-app", [
-  "ui.router",
-  "ui.bootstrap",
-  "ngRoute"
-]);
-const baseUrl = "http://localhost:5500";
-
-console.log(myApp, "MediumAPI-app");
+const myApp = angular.module("MediumAPI-app", ["ui.router", "ui.bootstrap"]);
+const baseUrl = "http://localhost:3001/";
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/");
+  //   $urlRouterProvider.otherwise("/login");
   $stateProvider.state("home", {
-    url: "/",
+    name: "home",
+    url: "/home",
     templateUrl: "../views/home.html",
     controller: "HomeController"
   });
+  $stateProvider.state("login", {
+    name: "login",
+    url: "/login",
+    templateUrl: "../views/login.html",
+    controller: "LoginController"
+  });
+  $stateProvider.state("register", {
+    name: "register",
+    url: "/register",
+    templateUrl: "../views/register.html",
+    controller: "RegisterController"
+  });
 });
-
-const isAuthorized = ($state, $rootScope) => {
-  const isLogged = localStorage.getItem("token");
-  console.log("Verificando autorização - Token:", isLogged);
-  if (!isLogged) {
-    $state.go("login");
-    return;
-  }
-  $rootScope.isLogged = true;
-};

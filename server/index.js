@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 const process = require("process");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../src/config/database")[env];
+const config = require(__dirname + "/../server/src/config/database")[env];
 const db = {};
 
 let sequelize;
@@ -43,8 +43,6 @@ Object.keys(db).forEach((modelName) => {
     db[modelName].associate(db);
   }
 });
-
-console.log(444);
 
 db.sequelize = sequelize;
 

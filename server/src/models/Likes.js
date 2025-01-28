@@ -22,7 +22,7 @@ class Likes extends Model {
 		})
 	}
 	static associate(models){
-		Likes.hasOne(models.Post, { foreignKey: 'post_id' , as:"post_id"});
+		Likes.belongsTo(models.Post, { foreignKey: 'post_id', as: "post_id" });
 		Likes.hasOne(models.User, { foreignKey: 'user_id', as:"user_id" });
 	}
 }

@@ -6,6 +6,6 @@ myApp.controller("HomeController", function ($scope, $http, $location) {
 
   $scope.onProfileIconClick = function () {
     $scope.showModal = !$scope.showModal;
-    console.log("flag state:", $scope.showModal);
+	  console.log("flag state:", $scope.showModal);
   };
 });

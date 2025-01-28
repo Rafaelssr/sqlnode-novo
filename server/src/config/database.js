@@ -31,3 +31,5 @@ module.exports = {
 		dialect: "postgres"
 	}
 };
+
+const p = require("../../")
