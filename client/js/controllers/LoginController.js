@@ -3,10 +3,11 @@ myApp.controller("LoginController", function ($scope, LoginService) {
     email: "",
     password: ""
   };
-	
-  const login = () => {
-	  if (!$scope.user.email || !$scope.user.password) {
-		console.log('pooow')
+
+  $scope.login = function () {
+    if (!$scope.user.email || !$scope.user.password) {
+      console.log("pooow");
+      alert("Email ou senha válido");
       return;
     }
     console.log($scope);
@@ -19,6 +20,4 @@ myApp.controller("LoginController", function ($scope, LoginService) {
         console.log(err);
       });
   };
-
-  $scope.login = login;
 });

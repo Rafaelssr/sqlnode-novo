@@ -1,15 +1,12 @@
 const Post = require("../models/Post");
 class PostService {
-  async createPost(info) {
-    const createPost = Post.create(info);
-
-    const alredyExistingPost = await Post.findOne({
-      where: { id: info.id, user_id: info.user_id }
-    });
-    if (alredyExistingPost) {
-      throw new Error("Esse post já existe!");
-    } else {
-      return await createPost;
+  async createPost(data) {
+    try {
+      console.log(data);
+      const newPost = await Post.create(data);
+      return newPost;
+    } catch (error) {
+      return { error };
     }
   }
 
@@ -23,12 +20,12 @@ class PostService {
     }
   }
 
-  async updatePost(id, info) {
+  async updatePost(id, data) {
     const post = Post.findByPk(id);
     if (!post) {
       throw new Error("O post em questão não existe.");
     } else {
-      const updatedPost = Post.update(info);
+      const updatedPost = Post.update(data);
       return updatedPost;
     }
   }

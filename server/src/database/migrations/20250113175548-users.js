@@ -51,7 +51,6 @@ module.exports = {
     try {
       await queryInterface.dropTable("users", { transaction });
       await transaction.commit();
-
     } catch (error) {
       await transaction.rollback();
       throw new Error;

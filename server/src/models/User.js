@@ -1,35 +1,35 @@
-const { Model, Sequelize } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const bcryptjs = require("bcryptjs");
 
 class User extends Model {
-  validPassword(password) {
-    return bcryptjs.compare(password, this.password_hash);
-  }
   static init(sequelize) {
     super.init(
       {
         name: {
-          type: Sequelize.STRING,
+          type: DataTypes.STRING,
           defaultValue: ""
         },
         email: {
-          type: Sequelize.STRING,
+          type: DataTypes.STRING,
           defaultValue: "",
           unique: true
         },
+        password_hash: {
+          type: DataTypes.STRING,
+          defaultValue: ""
+        },
         password: {
-          type: Sequelize.STRING,
+          type: DataTypes.VIRTUAL,
           defaultValue: ""
         }
       },
       {
         sequelize,
         paranoid: true,
-        tableName: "users",
         hooks: {
           async beforeCreate(user) {
             if (user.dataValues.password) {
-              user.dataValues.password = await bcryptjs.hash(
+              user.dataValues.password_hash = await bcryptjs.hash(
                 user.dataValues.password,
                 6
               );
@@ -43,8 +43,12 @@ class User extends Model {
     return this;
   }
   static associate(models) {
-    User.hasMany(models.Post, { foreignKey: "id", as: "posts" });
-    User.hasMany(models.Likes, { foreignKey: "id", as: "likes" });
+    User.hasMany(models.Post, { foreignKey: "id" });
+    User.hasMany(models.Likes, { foreignKey: "id" });
+  }
+
+	validPassword(password) {
+    	return bcryptjs.compare(password, this.password_hash);
   }
 }
 

@@ -1,8 +1,6 @@
 const User = require("../models/User");
-
 class UserService {
   async createUser(info) {
-    // funcionando como esperado
     try {
       const createdUser = await User.create(info);
       if (!createdUser) {
@@ -16,7 +14,6 @@ class UserService {
   }
 
   async listUsers() {
-    // funcionando como esperado
     try {
       const users = await User.findAll();
       if (!users) {
@@ -29,7 +26,6 @@ class UserService {
   }
 
   async getUser(id) {
-    // fucionando como esperado
     try {
       const user = await User.findByPk(id);
 
@@ -44,7 +40,6 @@ class UserService {
   }
 
   async updateUser(id, info) {
-    // funcionando como esperado
     try {
       const user = await User.findByPk(id);
       if (!user) {
@@ -65,7 +60,6 @@ class UserService {
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
-      console.log(user);
       await user.destroy();
     } catch (error) {
       return { message: error };

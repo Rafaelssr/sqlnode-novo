@@ -1,22 +1,19 @@
 const express = require("express");
+const cors = require("cors");
 
 const userRoutes = require("../routes/userRoutes");
 const tokenRoutes = require("../routes/tokenRoutes");
 const postRoutes = require("../routes/postRoutes");
 const likeRoutes = require("../routes/likeRoutes");
-const models = require("./src/models");
 
+require("../database/index");
 class App {
   constructor() {
     this.app = express();
+    this.app.use(cors());
     this.middlewares();
     this.routes();
-
-    models.sequelize.authenticate().then(() => {
-      console.log("Banco conectado");
-    });
   }
-
   middlewares() {
     this.app.use(
       express.urlencoded({
