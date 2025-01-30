@@ -1,7 +1,7 @@
 const userService = require("../service/userService");
 
 class UserController {
-  async store(req, res) {
+  async store(req, res) { // ok
     try {
       const user = await userService.createUser(req.body);
       return res.status(200).json(user);
@@ -10,19 +10,17 @@ class UserController {
     }
   }
 
-  async index(res) {
+  async index(res) { // ok
     try {
       const indexUsers = await userService.listUsers();
-
-      return res.status(200).json({ indexUsers });
+      console.log(res, "res");
+      return res.status(200).json(indexUsers);
     } catch (error) {
-      return res
-        .status(400)
-        .json({ message: "Erro ao listar usuários", error: error.message });
+      throw error;
     }
   }
 
-  async show(req, res) {
+  async show(req, res) { // ok
     try {
       const { id } = req.params;
       const showUser = await userService.getUser(id);
@@ -37,7 +35,7 @@ class UserController {
     }
   }
 
-  async update(req, res) {
+  async update(req, res) { // ok
     try {
       const { id } = req.params;
       const updatedUser = await userService.updateUser(id, req.body);

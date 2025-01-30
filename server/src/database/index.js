@@ -10,7 +10,6 @@ const connection = new Sequelize(config);
 const models = [User, Post, Like];
 
 models.forEach((model) => {
-  console.log(model, "model");
   model.init(connection);
 });
 models.forEach((model) => {

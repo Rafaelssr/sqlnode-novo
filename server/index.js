@@ -19,7 +19,7 @@ if (config.use_env_variable) {
     config
   );
 }
-console.log(fs.readdirSync(__dirname))
+
 fs.readdirSync(__dirname)
 	.filter((file) => {
 	  return (

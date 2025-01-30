@@ -17,6 +17,8 @@
 		"angular-bootstrap": "^0.12.2",
 		"angular-ui-bootstrap": "^2.5.6",
 		"bootstrap": "^5.3.3",
+		"code": "^5.2.4",
+		"fira": "^1.0.0",
 		"jsonwebtoken": "^9.0.2",
 		"jwt-decode": "^4.0.0",
 		"mysql2": "^3.12.0",

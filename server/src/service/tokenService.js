@@ -6,7 +6,7 @@ class TokenService {
     try {
       const { email = "", password = "" } = data;
 
-		const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
 
       if (!email || !password) {
         throw new Error("Credenciais inválidas");
@@ -30,8 +30,7 @@ class TokenService {
         return { token, id };
       }
     } catch (error) {
-      console.log(error);
-      //   throw new Error(error);
+      throw new Error(error);
     }
   }
 }

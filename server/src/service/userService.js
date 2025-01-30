@@ -1,8 +1,8 @@
 const User = require("../models/User");
 class UserService {
-  async createUser(info) {
+  async createUser(data) {
     try {
-      const createdUser = await User.create(info);
+      const createdUser = await User.create(data);
       if (!createdUser) {
         throw new Error("Não foi possível criar o usuário");
       }
@@ -13,9 +13,9 @@ class UserService {
     }
   }
 
-  async listUsers() {
+  async listUsers(id) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll(id);
       if (!users) {
         throw new Error("Não foi possível listar os usuários");
       }
@@ -39,22 +39,25 @@ class UserService {
     }
   }
 
-  async updateUser(id, info) {
+  async updateUser(id, data) {
     try {
       const user = await User.findByPk(id);
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
 
-      const updatedUser = await User.update(info);
+      const [update] = await User.update(data, {
+        where: { id }
+      });
+      console.log(update);
+      const updatedUser = await User.findByPk(id);
       return updatedUser;
     } catch (error) {
-      return { message: error };
+      throw error;
     }
   }
 
   async deleteUser(id) {
-    // funcionando como esperado
     try {
       const user = await User.findByPk(id);
       if (!user) {
