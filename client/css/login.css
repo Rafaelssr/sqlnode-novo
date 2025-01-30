@@ -48,3 +48,8 @@
 	text-decoration: none;
 }
 
+.alert.alert-danger{
+	margin-top: 1em;
+	padding:0.5em 0.5em 0em 0.2em;
+	margin-bottom: 0px;
+}

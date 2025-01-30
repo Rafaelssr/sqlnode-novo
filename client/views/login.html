@@ -2,22 +2,25 @@
 	<form class="doca-form" ng-submit="login()">
 		<div class="form-fields">
 			<div class="form-group">
-				<h4>Create Account</h4>
+				<h4> Welcome Back. </h4>
 				<p>Your Email</p>
 				<input type="email" ng-model="user.email">
 			</div>
 			<div class="form-group">
-				<p>Your Name</p>
+				<p>Your Password</p>
 				<input type="password" ng-model="user.password">
 			</div>
 			<pre>{{user}}</pre>
 		</div>
 		<div class="form-session">
 			<div class="continueButton-div">
-				<button class="continueButton" type="submit" ng-click="login()">Continue</button>
+				<button class="continueButton" type="submit">Continue</button>
+			</div>
+			<div class="alert alert-danger" ng-show="showLoginAlert">
+				<p>Por favor preencha os campos!</p>
 			</div>
 			<div class="form-session-link">
-				<p>Doseentpdoa have an account<a ui-sref="register"> Sign in</a></p>
+				<p>Doesn't have an account?<a ui-sref="register"> Create One </a></p>
 			</div>
 		</div>
 	</form>

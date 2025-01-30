@@ -1,7 +1,8 @@
 const userService = require("../service/userService");
 
 class UserController {
-  async store(req, res) { // ok
+  async store(req, res) {
+    // ok
     try {
       const user = await userService.createUser(req.body);
       return res.status(200).json(user);
@@ -10,7 +11,8 @@ class UserController {
     }
   }
 
-  async index(res) { // ok
+  async index(res) {
+    // ok
     try {
       const indexUsers = await userService.listUsers();
       console.log(res, "res");
@@ -20,12 +22,13 @@ class UserController {
     }
   }
 
-  async show(req, res) { // ok
+  async show(req, res) {
+    // ok
     try {
       const { id } = req.params;
       const showUser = await userService.getUser(id);
       if (!showUser) {
-        return res.status(400).json({
+        return res.status(404).json({
           errors: ["Usuário não encontrado"]
         });
       }
@@ -35,7 +38,8 @@ class UserController {
     }
   }
 
-  async update(req, res) { // ok
+  async update(req, res) {
+    // ok
     try {
       const { id } = req.params;
       const updatedUser = await userService.updateUser(id, req.body);

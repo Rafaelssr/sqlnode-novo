@@ -3,7 +3,6 @@ const myApp = angular.module("MediumAPI-app", ["ui.router", "ui.bootstrap"]);
 const baseUrl = "http://localhost:3001/";
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
-  //   $urlRouterProvider.otherwise("/login");
   $stateProvider.state("home", {
     name: "home",
     url: "/home",

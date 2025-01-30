@@ -8,10 +8,6 @@ const tokenSchema = require("../Schemas/tokenSchema.js");
 
 const router = new Router();
 
-router.post(
-  "/",
-  schemaValidator.validate(tokenSchema.createToken),
-  tokenController.store
-);
+router.post("/", schemaValidator.validate(tokenSchema.createToken), tokenController.store);
 
 module.exports = router;

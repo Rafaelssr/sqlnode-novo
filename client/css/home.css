@@ -60,6 +60,6 @@
 	cursor: pointer;
 }
 
-.fa-regular.fa-user, .fa-regular.fa-pen-to-square,.fa-regular.fa-bell, span {
+.fa-regular.fa-user, .fa-regular.fa-pen-to-square,.fa-regular.fa-bell, .fa-solid.fa-right-from-bracket, span {
 	cursor: pointer;
 }

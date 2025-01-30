@@ -1,23 +1,32 @@
-myApp.controller("LoginController", function ($scope, LoginService) {
-  $scope.user = {
-    email: "",
-    password: ""
-  };
+myApp.controller(
+  "LoginController",
+  function ($scope, LoginService, $window, $state) {
+    $scope.user = {
+      email: "",
+      password: "",
+    };
 
-  $scope.login = function () {
-    if (!$scope.user.email || !$scope.user.password) {
-      console.log("pooow");
-      alert("Email ou senha válido");
-      return;
-    }
-    console.log($scope);
+    $scope.showLoginAlert = false;
 
-    LoginService.userLogin($scope.user)
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-});
+    $scope.login = function () {
+      if (!$scope.user.email || !$scope.user.password) {
+        $scope.showLoginAlert = true;
+        return;
+      }
+      // html -> controller (frontEnd) -> service -> routes -> controller (backEnd)
+
+      $scope.showLoginAlert = false;
+      LoginService.userLogin($scope.user)
+        .then((resp) => {
+          console.log($scope.user);
+          $window.localStorage.setItem("id", resp.data.id);
+          $window.localStorage.setItem("token", resp.data.token);
+
+          $state.go("home");
+        })
+        .catch((error) => {
+          console.log("Error on logIn attempt", error);
+        });
+    };
+  }
+);

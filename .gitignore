@@ -1,0 +1,6 @@
+node_modules
+settings.json
+yarn.lock
+eslint.config.mjs
+package.json
+.sequelizerc

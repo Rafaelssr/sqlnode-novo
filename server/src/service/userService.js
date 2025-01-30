@@ -2,10 +2,17 @@ const User = require("../models/User");
 class UserService {
   async createUser(data) {
     try {
-      const createdUser = await User.create(data);
-      if (!createdUser) {
-        throw new Error("Não foi possível criar o usuário");
+      const user = await User.findOne({
+        where: {
+          email: data.email
+        }
+      });
+
+      if (user) {
+        throw new Error("Já existe esse usuário");
       }
+
+      const createdUser = await User.create(data);
 
       return createdUser;
     } catch (error) {
@@ -13,11 +20,14 @@ class UserService {
     }
   }
 
-  async listUsers(id) {
+  async listUsers() {
     try {
-      const users = await User.findAll(id);
+      const users = await User.findAll({
+        where: email
+      });
+
       if (!users) {
-        throw new Error("Não foi possível listar os usuários");
+        throw new Error("Usuário não existente");
       }
       return users;
     } catch (error) {
