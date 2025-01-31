@@ -7,7 +7,13 @@
 .logo-img{
 	width:40px;
 	height:40px;
-	margin-left:1em;
+}
+
+.header-components{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content: space-between;
+	margin-top:10px;
 }
 
 .homePage-searchBar{
@@ -23,7 +29,9 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 20px;
-	margin-right: 30px;
+	cursor:pointer;
+	margin-right: 20px;
+	margin-left:20px;
 }
 
 .modal-backdrop {
@@ -39,7 +47,7 @@
 	z-index: 1000;
 }
 
-  .modal {
+ .modal {
 	background: #fff;
 	padding: 20px;
 	border-radius: 5px;
@@ -60,6 +68,34 @@
 	cursor: pointer;
 }
 
-.fa-regular.fa-user, .fa-regular.fa-pen-to-square,.fa-regular.fa-bell, .fa-solid.fa-right-from-bracket, span {
+.doca-dropdown-menu {
+	position: absolute;
+	right: 10px;
+	top: 50px;
+	background: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	padding: 10px;
+	width: 220px;
+	z-index: 1000;
+	display: none;
+  }
+
+  [ng-show="showProfileDropDown"] {
+	display: block;
+  }
+
+  .doca-dropdown__list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  }
+
+  .doca-dropdown__list__item {
+	padding: 8px 12px;
 	cursor: pointer;
-}
+  }
+
+  .doca-dropdown__list__item:hover {
+	background: #f0f0f0;
+  }

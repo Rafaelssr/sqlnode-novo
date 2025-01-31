@@ -10,11 +10,12 @@ class PostController {
     }
   }
 
-  async index() {
+  async index(req, res) {
     try {
       const indexPost = await postService.listPosts();
-      return res.status(200).json({ indexPost });
+      return res.status(200).json(indexPost);
     } catch (error) {
+      console.log(error, "error");
       return res.status(400).json({ message: error });
     }
   }

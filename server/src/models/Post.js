@@ -48,8 +48,8 @@ class Post extends Model {
     return this;
   }
   static associate(models) {
-    Post.hasOne(models.User, { foreignKey: "id" });
-    Post.hasMany(models.Likes, { foreignKey: "id" });
+    Post.belongsTo(models.User, { foreignKey: "user_id", as: "user" });
+    Post.hasMany(models.Likes, { foreignKey: "post_id" });
   }
 }
 

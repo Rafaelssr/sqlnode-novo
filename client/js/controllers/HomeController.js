@@ -1,11 +1,19 @@
-myApp.controller("HomeController", function ($scope, $http, $location) {
-  $scope.showModal = false;
+myApp.controller("HomeController", function ($scope, $http, $location, $document) {
+  $scope.showProfileDropDown = false;
   $scope.onWriteClick = function () {
     console.log("icon");
   };
 
-  $scope.onProfileIconClick = function () {
-    $scope.showModal = !$scope.showModal;
-	  console.log("flag state:", $scope.showModal);
+  $scope.onProfileClick = function () {
+    $scope.showProfileDropDown = !$scope.showProfileDropDown;
+	  console.log("flag state:", $scope.showProfileDropDown);
   };
+  $document.on("click", function (event) {
+    let isClickedInside = event.target.closest(".doca-dropdown-menu, .fa-user");
+    if (!isClickedInside) {
+      $scope.$apply(function () {
+        $scope.showProfileDropDown = false;
+      });
+    }
+  });
 });

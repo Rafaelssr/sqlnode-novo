@@ -14,7 +14,7 @@ myApp.directive("customHeader", function () {
           confirmButtonText: "yes"
         }).then((result) => {
           if (result) {
-            $state.go("home");
+            $state.go("login");
             localStorage.clear();
           }
         });

@@ -43,8 +43,8 @@ class User extends Model {
     return this;
   }
   static associate(models) {
-    User.hasMany(models.Post, { foreignKey: "id" });
-    User.hasMany(models.Likes, { foreignKey: "id" });
+    User.hasMany(models.Post, { foreignKey: "user_id" });
+    User.hasMany(models.Likes, { foreignKey: "user_id" });
   }
 
 	validPassword(password) {

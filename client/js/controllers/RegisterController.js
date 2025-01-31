@@ -5,8 +5,6 @@ myApp.controller("RegisterController", function ($scope, userService, $state) {
     name: ""
   };
 
-  console.log(11111);
-
   $scope.registerUser = function () {
     if (!$scope.user.email || !$scope.user.password) {
       return;

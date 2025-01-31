@@ -1,8 +1,9 @@
 const Post = require("../models/Post");
+const User = require("../models/User");
+
 class PostService {
   async createPost(data) {
     try {
-      console.log(data);
       const newPost = await Post.create(data);
       return newPost;
     } catch (error) {
@@ -10,14 +11,19 @@ class PostService {
     }
   }
 
-  async listPosts(id, user_id) {
-    if (!id) {
-      throw new Error("o id para listagem do post não existe");
-    } else if (!user_id) {
-      throw new Error("O usuário não existe.");
-    } else {
-      return await Post.findAll(id);
-    }
+  async listPosts() {
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: User,
+          as: "user"
+        }
+      ],
+      nest: true,
+      logging: true
+    });
+
+    return posts;
   }
 
   async updatePost(id, data) {

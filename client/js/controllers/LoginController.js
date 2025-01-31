@@ -3,7 +3,7 @@ myApp.controller(
   function ($scope, LoginService, $window, $state) {
     $scope.user = {
       email: "",
-      password: "",
+      password: ""
     };
 
     $scope.showLoginAlert = false;
