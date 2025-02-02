@@ -21,4 +21,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/register.html",
     controller: "RegisterController"
   });
+  $stateProvider.state("post", {
+    name: "posts",
+    url: "/post",
+    templateUrl: "../views/feed.html",
+    controller: "PostModalController"
+  });
 });
