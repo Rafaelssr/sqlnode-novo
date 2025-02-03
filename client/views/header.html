@@ -4,12 +4,12 @@
     <input type="text" placeholder="Search" class="homePage-searchBar" />
   </div>
   <div class="homepage-icons">
-    <div>
-      <i class="fa-regular fa-pen-to-square" ng-click="onWriteClick()"></i>
-      <span ng-click="onWriteClick()">write</span>
+    <div ng-click="onWriteClick()">
+      <i class="fa-regular fa-pen-to-square"></i>
+      <span>write</span>
     </div>
     <i class="fa-regular fa-bell"></i>
-    <i class="fa-regular fa-user" ng-click="onProfileClick()"></i>
+	<i class="fa-regular fa-user" id="profile" ng-click="onProfileClick()"></i>
   </div>
   <div class="doca-dropdown-menu nav-dropdown-list-new" ng-show="showProfileDropDown">
 	<ul class="doca-dropdown__list">

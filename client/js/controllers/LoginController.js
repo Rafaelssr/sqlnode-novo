@@ -25,7 +25,7 @@ myApp.controller(
           $state.go("home");
         })
         .catch((error) => {
-          console.log("Error on logIn attempt", error);
+          throw new Error("Error logging in :", error);
         });
     };
   }

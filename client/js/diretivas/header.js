@@ -1,8 +1,9 @@
-myApp.directive("customHeader", function () {
+myApp.directive("customHeader", function ($document, $uibModal) {
   return {
     restrict: "E",
     templateUrl: "../../views/header.html",
     link: function (scope) {
+      scope.showProfileDropDown = false;
       const logOut = () => {
         scope.loading = false;
         Swal.fire({
@@ -19,7 +20,54 @@ myApp.directive("customHeader", function () {
           }
         });
       };
+
+      const onProfileClick = () => {
+        scope.showProfileDropDown = !scope.showProfileDropDown;
+      };
+
+      const onProfileClickOutside = () => {
+        scope.showProfileDropDown = false;
+      };
+
+      const onWriteClick = () => {
+        let uibModalInstance = $uibModal.open({
+          templateUrl: "../../views/writePost.html",
+          controller: "PostModalController",
+          size: "lg"
+        });
+
+        uibModalInstance.result.then(
+          () => {
+            console.log("modal fechado");
+          },
+          () => {
+            console.log("modal");
+          }
+        );
+      };
+
+      const closeDropdown = function (event) {
+        const dropdown = document.querySelector(".fa-user");
+        const profileButton = document.getElementById("profile");
+
+        if (dropdown && profileButton) {
+          if (
+            !dropdown.contains(event.target) &&
+            !profileButton.contains(event.target)
+          ) {
+            scope.showProfileDropDown = false;
+            scope.$apply();
+          }
+        }
+      };
+
+      $document.on("click", closeDropdown);
+      $document.on("scroll", closeDropdown);
+
       scope.logOut = logOut;
+      scope.onWriteClick = onWriteClick;
+      scope.onProfileClick = onProfileClick;
+      scope.onProfileClickOutside = onProfileClickOutside;
     }
   };
 });
