@@ -8,7 +8,7 @@ module.exports = {
         {
           type: Sequelize.STRING,
           allowNull: true,
-          after: "text"
+          after: "text",
         },
         { transaction }
       );

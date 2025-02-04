@@ -22,20 +22,22 @@ class PostController {
 
   async show(req, res) {
     try {
-      const { id } = req.body;
-      const post = await postService.showPost(id);
+      const { user_id } = req.params;
+      const post = await postService.showPost(user_id);
       return res.status(200).json({ post });
     } catch (error) {
       return res.status(400).json(error);
     }
   }
 
-  async update(req) {
+  async update(req, res, data) {
     try {
-      const updatedPost = await postService.updatePost(req.body);
+      const { id, ...data } = req.body;
+      const updatedPost = await postService.updatePost(id, data);
       return updatedPost;
     } catch (error) {
-      return res.status(400).json({ message: error });
+      console.log(error);
+      return res.status(400).json(error);
     }
   }
 

@@ -11,6 +11,15 @@ class PostService {
     }
   }
 
+  async showPost(user_id) {
+    const post = await Post.findOne({
+      where: {
+        user_id
+      }
+    });
+    return post;
+  }
+
   async listPosts() {
     const posts = await Post.findAll({
       include: [
@@ -27,11 +36,15 @@ class PostService {
   }
 
   async updatePost(id, data) {
-    const post = Post.findByPk(id);
+    const post = await Post.findByPk(id);
     if (!post) {
       throw new Error("O post em questão não existe.");
     } else {
-      const updatedPost = Post.update(data);
+      const updatedPost = await Post.update(data, {
+        where: {
+          id
+        }
+      });
       return updatedPost;
     }
   }

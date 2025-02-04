@@ -4,7 +4,7 @@ module.exports = {
     try {
       await queryInterface.addColumn(
         "users",
-        "user_profileImg",
+        "profile_img",
         {
           type: Sequelize.STRING,
           allowNull: true,
@@ -22,7 +22,7 @@ module.exports = {
   async down(queryInterface) {
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.removeColumn("users", "user_profileImg", {
+      await queryInterface.removeColumn("users", "profile_img", {
         transaction
       });
       await transaction.commit();

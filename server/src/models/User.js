@@ -22,9 +22,8 @@ class User extends Model {
           type: DataTypes.VIRTUAL,
           defaultValue: ""
         },
-        profileImg: {
-			type: DataTypes.STRING,
-			field:"user_profileImg"
+        profile_img: {
+          type: DataTypes.STRING,
         }
       },
       {

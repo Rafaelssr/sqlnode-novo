@@ -61,7 +61,6 @@ class UserService {
       const [update] = await User.update(data, {
         where: {
           id,
-          email
         }
       });
       console.log(update);

@@ -19,10 +19,9 @@ const postSchema = {
       .shape({
         title: yup
           .string()
-          .max(200)
-          .required("É necessário que exista um título"),
-        text: yup.string().required(),
-        summary: yup.string().required(),
+          .max(200),
+        text: yup.string(),
+        summary: yup.string(),
         likes: yup.number().integer(),
         posted_at: yup.date()
       })

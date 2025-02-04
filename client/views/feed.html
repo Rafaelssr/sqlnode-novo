@@ -1,12 +1,12 @@
-<div class="postsHeader">
-  <i class="fa-solid fa-plus post-header-elements plus-icon"></i>
-  <span class="post-header-elements">For you</span>
-  <span class="post-header-elements">Following</span>
-</div>
 <div class="postsDiv">
+  <div class="postsHeader">
+    <i class="fa-solid fa-plus post-header-elements plus-icon"></i>
+    <span class="post-header-elements">For you</span>
+    <span class="post-header-elements">Following</span>
+  </div>
   <div ng-repeat="post in posts" class="post">
     <span class="post-profile">
-      <img src="{{user.user_profileImg}}" alt="" class="profile-image" />
+      <img src="{{user.profile_img}}" alt="" class="profile-image" />
       <span>{{post.user.name}}</span>
     </span>
     <h3>{{post.title}}</h3>

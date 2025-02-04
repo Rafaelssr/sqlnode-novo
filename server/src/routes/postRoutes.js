@@ -24,7 +24,7 @@ router.get(
 );
 
 router.get(
-  "/:id",
+  "/:user_id",
   schemaValidator.validate(postSchema.listPost),
   requiredLogin,
   postController.show
