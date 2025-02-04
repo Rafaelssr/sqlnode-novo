@@ -4,7 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+	"sequelize": "sequelize",
+	"db:migrate": "sequelize db:migrate",
+	"db:rollback": "sequelize db:migrate:undo",
+	"db:reset": "sequelize db:migrate:undo:all && sequelize db:migrate",
+	"db:seed": "sequelize db:seed:all",
+	"db:seed:undo": "sequelize db:seed:undo:all"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 
-const userRoutes = require("../routes/userRoutes");
-const tokenRoutes = require("../routes/tokenRoutes");
-const postRoutes = require("../routes/postRoutes");
-const likeRoutes = require("../routes/likeRoutes");
+const userRoutes = require("../server/src/routes/userRoutes");
+const tokenRoutes = require("../server/src/routes/tokenRoutes");
+const postRoutes = require("../server/src/routes/postRoutes");
+const likeRoutes = require("../server/src/routes/likeRoutes");
 
-require("../database/index");
+require("../server/src/database/index");
 class App {
   constructor() {
     this.app = express();

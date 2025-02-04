@@ -1,0 +1,21 @@
+.postsContainer {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.postsHeader {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	border-bottom: 2px solid #ddd;
+	padding: 15px 0;
+	width: 100%;
+}
+
+.postsDiv {
+	width: 100%;
+}
+
+.post {
+	padding: 15px 0;
+}
