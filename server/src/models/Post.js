@@ -37,6 +37,9 @@ class Post extends Model {
         likes: {
           type: DataTypes.INTEGER,
           defaultValue: 0
+        },
+        post_thumbnail: {
+			type: DataTypes.STRING,
         }
       },
       {

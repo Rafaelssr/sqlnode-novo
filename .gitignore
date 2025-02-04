@@ -3,4 +3,3 @@ settings.json
 yarn.lock
 eslint.config.mjs
 package.json
-.sequelizerc

@@ -21,13 +21,17 @@ class User extends Model {
         password: {
           type: DataTypes.VIRTUAL,
           defaultValue: ""
+        },
+        profileImg: {
+			type: DataTypes.STRING,
+			field:"user_profileImg"
         }
       },
       {
         sequelize,
         paranoid: true,
         hooks: {
-          async beforeCreate(user) {
+          async beforeSave(user) {
             if (user.dataValues.password) {
               user.dataValues.password_hash = await bcryptjs.hash(
                 user.dataValues.password,
@@ -47,8 +51,8 @@ class User extends Model {
     User.hasMany(models.Likes, { foreignKey: "user_id" });
   }
 
-	validPassword(password) {
-    	return bcryptjs.compare(password, this.password_hash);
+  validPassword(password) {
+    return bcryptjs.compare(password, this.password_hash);
   }
 }
 

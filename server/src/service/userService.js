@@ -4,7 +4,8 @@ class UserService {
     try {
       const user = await User.findOne({
         where: {
-          email: data.email
+          email: data.email,
+          profile_img: data.user_profileImg || null
         }
       });
 
@@ -23,7 +24,8 @@ class UserService {
   async listUsers() {
     try {
       const users = await User.findAll({
-        where: email
+        where: email,
+        id: id
       });
 
       if (!users) {
@@ -57,7 +59,10 @@ class UserService {
       }
 
       const [update] = await User.update(data, {
-        where: { id }
+        where: {
+          id,
+          email
+        }
       });
       console.log(update);
       const updatedUser = await User.findByPk(id);
