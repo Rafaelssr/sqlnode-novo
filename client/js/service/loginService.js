@@ -1,9 +1,10 @@
-myApp.service("LoginService", function ($http) {
+myApp.service("LoginService", function ($http, $state) {
   this.userLogin = (data) => {
     return $http.post(`${baseUrl}token`, data);
   };
 
-  this.userLogOut = (data) => {
+  this.userLogOut = () => {
+    console.log("🚀 ~ triggered");
     const token = localStorage.getItem("token");
     if (!token) {
       return "O token não foi encontrado";
@@ -11,5 +12,6 @@ myApp.service("LoginService", function ($http) {
 
     localStorage.removeItem("id");
     localStorage.removeItem("token");
+    $state.go("login");
   };
 });

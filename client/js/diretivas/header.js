@@ -1,4 +1,4 @@
-myApp.directive("customHeader", function ($document, $uibModal) {
+myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
   return {
     restrict: "E",
     templateUrl: "../../views/header.html",
@@ -15,8 +15,7 @@ myApp.directive("customHeader", function ($document, $uibModal) {
           confirmButtonText: "yes"
         }).then((result) => {
           if (result) {
-            $state.go("login");
-            localStorage.clear();
+			LoginService.userLogOut();
           }
         });
       };
