@@ -4,8 +4,7 @@ class UserService {
     try {
       const user = await User.findOne({
         where: {
-          email: data.email,
-          profile_img: data.user_profileImg || null
+          email: data.user.email
         }
       });
 
@@ -13,11 +12,15 @@ class UserService {
         throw new Error("Já existe esse usuário");
       }
 
-      const createdUser = await User.create(data);
+      if (!data.user.profile_img) {
+        data.user.profile_img =
+          "https://www.vecteezy.com/vector-art/2318271-user-profile-icon";
+	  }
 
+	  const createdUser = await User.create(data);
       return createdUser;
     } catch (error) {
-      return { message: error };
+      throw new Error(error);
     }
   }
 
@@ -60,7 +63,7 @@ class UserService {
 
       const [update] = await User.update(data, {
         where: {
-          id,
+          id
         }
       });
       console.log(update);

@@ -11,7 +11,7 @@ myApp.directive("customFeed", function (postService) {
 
       const listPosts = () => {
         postService.listPosts().then((resp) => {
-          console.log(resp, "resp");
+          console.log(resp.data, "resp");
           scope.posts = resp.data;
         });
       };

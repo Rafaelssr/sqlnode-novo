@@ -4,10 +4,14 @@ const User = require("../models/User");
 class PostService {
   async createPost(data) {
     try {
+      if (!data.post_thumbnail) {
+        data.post_thumbnail = "https://placehold.co/600x400";
+      }
+
       const newPost = await Post.create(data);
       return newPost;
     } catch (error) {
-      return { error };
+      throw new Error(error);
     }
   }
 
@@ -22,10 +26,12 @@ class PostService {
 
   async listPosts() {
     const posts = await Post.findAll({
+      where: { deleted_at: null },
       include: [
         {
           model: User,
-          as: "user"
+          as: "user",
+          attributes: ["name", "profile_img"]
         }
       ],
       nest: true,

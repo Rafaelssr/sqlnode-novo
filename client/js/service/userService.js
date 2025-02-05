@@ -7,4 +7,7 @@ myApp.service("userService", function ($http) {
     return $http.put(`${baseUrl}users`, data);
   };
 
+  this.listUser = () => {
+    return $http.get(`${baseUrl}users`, data);
+  };
 });

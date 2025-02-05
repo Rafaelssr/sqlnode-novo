@@ -1,4 +1,4 @@
-<div class="postsDiv">
+<!-- <div class="postsDiv">
   <div class="postsHeader">
     <i class="fa-solid fa-plus post-header-elements plus-icon"></i>
     <span class="post-header-elements">For you</span>
@@ -6,9 +6,12 @@
   </div>
   <div ng-repeat="post in posts" class="post">
     <span class="post-profile">
-      <img src="{{user.profile_img}}" alt="" class="profile-image" />
+      <img
+        ng-src="{{user.profile_img || 'https://placehold.co/20x20'}}"
+        class="profile-image"
+      />
       <span>{{post.user.name}}</span>
-    </span>
+    </span>	
     <h3>{{post.title}}</h3>
     <h5>{{post.summary}}</h5>
     <span>
@@ -45,8 +48,59 @@
     </span>
     <span class="post-footer-right"> </span>
     <span class="img-absolute">
-      <img src="{{post.post_thumbnail}}" alt="" class="postThumbnail" />
+      <img
+        ng-src="{{post.post_thumbnail || 'https://placehold.co/150x150'}}"
+        alt=""
+        class="postThumbnail"
+      />
     </span>
+    <div class="post-line"></div>
+  </div>
+</div> -->
+
+<div class="postsDiv">
+  <div class="postsHeader">
+    <i class="fa-solid fa-plus post-header-elements plus-icon"></i>
+    <span class="post-header-elements">For you</span>
+    <span class="post-header-elements">Following</span>
+  </div>
+
+  <div ng-repeat="post in posts" class="post">
+    <div class="post-content">
+      <div class="post-info">
+        <span class="post-profile">
+          <img
+            ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
+            class="profile-image"
+          />
+          <span class="user-name">{{post.user.name}}</span>
+        </span>
+        <h3 class="post-title">{{post.title}}</h3>
+        <h5 class="post-summary">{{post.summary}}</h5>
+        <span class="post-meta">
+          <span class="date">{{post.createdAt | formatDate}}</span>
+          <span class="likes">
+            <i
+              class="fa-regular fa-heart be-pointer"
+              ng-click="like(post.id, $event)"
+            ></i>
+            {{post.post_likes}}
+          </span>
+          <span class="comments">
+            <i class="fa-regular fa-comment"></i>
+            {{post.comments}}
+          </span>
+        </span>
+      </div>
+
+      <div class="post-thumbnail">
+        <img
+          ng-src="{{post.post_thumbnail || 'https://placehold.co/120x90'}}"
+          alt="Post Thumbnail"
+          class="postThumbnail"
+        />
+      </div>
+    </div>
     <div class="post-line"></div>
   </div>
 </div>
