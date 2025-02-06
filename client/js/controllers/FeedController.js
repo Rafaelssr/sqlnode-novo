@@ -1,10 +1,14 @@
 myApp.controller("FeedController", function ($scope, PostService) {
   $scope.posts = [];
-  PostService.getPosts()
+  PostService.listPosts()
     .then(() => {
       $scope.posts = $scope.data;
     })
     .catch((error) => {
       console.log(error);
-    });
+	});
+
+	$scope.openExtraActions = function () {
+		
+	}
 });

@@ -9,7 +9,7 @@ myApp.controller(
 
     $scope.registerUser = function () {
       if (!$scope.user.email || !$scope.user.password) {
-        return;
+        return ;
       }
 
       userService.createUser($scope.user).then(() => {

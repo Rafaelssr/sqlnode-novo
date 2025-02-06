@@ -13,7 +13,7 @@ myApp.controller(
         $scope.showLoginAlert = true;
         return;
       }
-      // html -> controller (frontEnd) -> service -> routes -> controller (backEnd)
+      // html -> controller (frontEnd) -> service (frontend) -> routes -> controller (backEnd) -> service (backend) -> database
 
       $scope.showLoginAlert = false;
       LoginService.userLogin($scope.user)
@@ -25,6 +25,7 @@ myApp.controller(
           $state.go("home");
         })
         .catch((error) => {
+          console.log(error);
           throw new Error("Error logging in :", error);
         });
     };

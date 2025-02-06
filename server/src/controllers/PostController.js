@@ -4,6 +4,7 @@ class PostController {
   async store(req, res) {
     try {
       const post = await postService.createPost(req.body);
+
       return res.status(200).json(post);
     } catch (error) {
       return res.status(400).json({ error: error.message });
@@ -13,6 +14,7 @@ class PostController {
   async index(req, res) {
     try {
       const indexPost = await postService.listPosts();
+
       return res.status(200).json(indexPost);
     } catch (error) {
       console.log(error, "error");

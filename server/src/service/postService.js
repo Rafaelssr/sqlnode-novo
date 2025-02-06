@@ -3,16 +3,20 @@ const User = require("../models/User");
 
 class PostService {
   async createPost(data) {
-    try {
-      if (!data.post_thumbnail) {
-        data.post_thumbnail = "https://placehold.co/600x400";
-      }
-
-      const newPost = await Post.create(data);
-      return newPost;
-    } catch (error) {
-      throw new Error(error);
+    if (!data.post_thumbnail) {
+      data.post_thumbnail = "https://placehold.co/600x400";
     }
+
+    const { title, text, summary, post_thumbnail, user_id } = data;
+    const newPost = await Post.create({
+      title,
+      text,
+      summary,
+      post_thumbnail,
+      user_id
+    });
+
+    return newPost;
   }
 
   async showPost(user_id) {
@@ -21,6 +25,7 @@ class PostService {
         user_id
       }
     });
+
     return post;
   }
 

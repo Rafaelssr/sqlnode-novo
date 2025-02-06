@@ -57,13 +57,13 @@
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-  .modal-header, .modal-footer {
+.modal-header, .modal-footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
  }
 
-  .modal-header button.close {
+.modal-header button.close {
 	background: none;
 	border: none;
 	font-size: 1.5rem;
@@ -81,23 +81,27 @@
 	width: 220px;
 	z-index: 1000;
 	display: none;
-  }
+}
 
-  [ng-show="showProfileDropDown"] {
+[ng-show="showProfileDropDown"] {
 	display: block;
-  }
+}
 
-  .doca-dropdown__list {
+.doca-dropdown__list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-  }
+}
 
-  .doca-dropdown__list__item {
+.doca-dropdown__list__item {
 	padding: 8px 12px;
 	cursor: pointer;
-  }
+}
 
-  .doca-dropdown__list__item:hover {
+.doca-dropdown__list__item:hover {
 	background: #f0f0f0;
-  }
+}
+
+#dropDownItem{
+	align-items: center;
+}

@@ -4,43 +4,43 @@
     <input type="text" placeholder="Search" class="homePage-searchBar" />
   </div>
   <div class="homepage-icons">
-    <div ng-click="onWriteClick()">
-      <i class="fa-regular fa-pen-to-square"></i>
-      <span>write</span>
-    </div>
-    <i class="fa-regular fa-bell"></i>
-	<i class="fa-regular fa-user" id="profile" ng-click="onProfileClick()"></i>
+	 <div ng-click="onWriteClick()">
+    	  <i class="fa-regular fa-pen-to-square"></i>
+      		<span>write</span>
+   	 </div>
+    	<i class="fa-regular fa-bell"></i>
+		<i class="fa-regular fa-user" id="profile" ng-click="onProfileClick()"></i>
   </div>
   <div class="doca-dropdown-menu nav-dropdown-list-new" ng-show="showProfileDropDown">
-	<ul class="doca-dropdown__list">
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action" ui-sref="profile">
-			<i class="fa-thin fa-user-pen"></i>
-			Profile
-		</li>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			<i class="fa-thin fa-bookmark"></i>
-			Libary
-		</li>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			<i class="fa-sharp fa-thin fa-memo"></i>
-			Stories
-		</li>
-		<hr
-		class="doca-separator"
-		style="border-color: rgba(77, 77, 77, 0.061); width: 100%;"
-		/>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			Settings
-		</li>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			Refine recommendations
-		</li>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			Manage publications
-		</li>
-		<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
-			Help
-		</li>
+		<ul class="doca-dropdown__list">
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action" ui-sref="profile">
+				<i class="fa-thin fa-user-pen"></i>
+				Profile
+			</li>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
+				<i class="fa-thin fa-bookmark"></i>
+				Libary
+			</li>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action" ng-click="openUserPosts()">
+				<i class="fa-sharp fa-thin fa-memo"></i>
+				My Posts
+			</li>
+			<hr
+			class="doca-separator"
+			style="border-color: rgba(77, 77, 77, 0.061); width: 100%;"
+			/>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
+				Settings
+			</li>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
+				Refine recommendations
+			</li>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
+				Manage publications
+			</li>
+			<li id="dropDownItem" class="doca-dropdown__list__item doca-dropdown__list__item--action">
+				Help
+			</li>
 		<hr
 		class="doca-separator"
 		style="border-color: rgba(77, 77, 77, 0.061); width: 100%;"

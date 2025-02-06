@@ -6,7 +6,7 @@ myApp.service("LoginService", function ($http, $state) {
   this.userLogOut = () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      return "O token não foi encontrado";
+      return { message: "O token não foi encontrado" };
     }
 
     localStorage.removeItem("id");

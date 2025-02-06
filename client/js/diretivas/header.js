@@ -15,14 +15,14 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
           confirmButtonText: "yes"
         }).then((result) => {
           if (result) {
-			LoginService.userLogOut();
+            LoginService.userLogOut();
           }
         });
       };
 
       const onProfileClick = () => {
         scope.showProfileDropDown = !scope.showProfileDropDown;
-      };
+	  };
 
       const onProfileClickOutside = () => {
         scope.showProfileDropDown = false;
@@ -33,17 +33,17 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
           templateUrl: "../../views/writePost.html",
           controller: "PostModalController",
           size: "lg"
-        });
+		});
 
         uibModalInstance.result.then(
           () => {
-            console.log("modal fechado");
+            console.log("write post modal closed");
           },
           () => {
-            console.log("modal");
+            console.log("write post cancelled");
           }
         );
-      };
+	  };
 
       const closeDropdown = function (event) {
         const dropdown = document.querySelector(".fa-user");
@@ -55,7 +55,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
             !profileButton.contains(event.target)
           ) {
             scope.showProfileDropDown = false;
-            scope.$apply();
+            scope.$apply(); // $apply : revisa alterações feitas no scope do frontend
           }
         }
       };

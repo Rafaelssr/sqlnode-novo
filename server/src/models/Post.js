@@ -28,7 +28,8 @@ class Post extends Model {
         },
         posted_at: {
           type: DataTypes.DATE,
-          allowNull: false
+          allowNull: false,
+          defaultValue: DataTypes.NOW
         },
         deleted_at: {
           type: DataTypes.DATE,
@@ -39,7 +40,8 @@ class Post extends Model {
           defaultValue: 0
         },
         post_thumbnail: {
-			type: DataTypes.STRING,
+          type: DataTypes.STRING,
+          allowNull: true
         }
       },
       {

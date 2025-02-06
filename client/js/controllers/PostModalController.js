@@ -1,8 +1,37 @@
-myApp.controller("PostModalController", function ($scope, $http, $state) {
-	$scope.closePostModal = function () {
-		$uibModal.close();
-	};
-	$scope.dismiss = function () {
-		$uibModal.dismiss('cancel');
-	}
-});
+myApp.controller(
+  "PostModalController",
+  function ($scope, postService, $uibModalInstance) {
+    const user_id = localStorage.getItem("id");
+    $scope.post = {
+      user_id,
+      title: "",
+      text: "",
+      summary: "",
+      post_thumbnail: ""
+    };
+
+    $scope.closePostModal = function () {
+      $uibModalInstance.close();
+    };
+
+    $scope.dismiss = function () {
+      $uibModalInstance.dismiss("cancel");
+    };
+
+    $scope.publishPost = function () {
+      console.log($scope.post);
+      if (!$scope.post) {
+        return;
+      }
+
+      postService
+        .createPost($scope.post)
+        .then(() => {
+          $scope.closePostModal();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+);

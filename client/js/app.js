@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const myApp = angular.module("MediumAPI-app", ["ui.router", "ui.bootstrap"]);
 const baseUrl = "http://localhost:3001/";
 
@@ -21,10 +20,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/register.html",
     controller: "RegisterController"
   });
-  $stateProvider.state("post", {
-    name: "posts",
-    url: "/post",
-    templateUrl: "../views/feed.html",
-    controller: "PostModalController"
-  });
+
+  $urlRouterProvider.otherwise("/login");
 });
