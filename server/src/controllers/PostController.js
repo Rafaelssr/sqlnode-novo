@@ -32,7 +32,7 @@ class PostController {
     }
   }
 
-  async update(req, res, data) {
+  async update(req, res) {
     try {
       const { id, ...data } = req.body;
       const updatedPost = await postService.updatePost(id, data);
@@ -43,12 +43,17 @@ class PostController {
     }
   }
 
-  async delete(id) {
-    try {
-      const deletedPost = await postService.deletePost(id);
+  async delete(req, res) {
+	  try {
+		  console.log(req.user);
+      const user_id = req.body;
+      const { id } = req.params;
+
+      const deletedPost = await postService.deletePost(id, user_id);
       return res.status(200).json({ deletedPost });
-    } catch (error) {
-      return res.status(400).json({ message: error });
+	} catch (error) {
+		console.log(error)
+      return res.status(403).json(error);
     }
   }
 }

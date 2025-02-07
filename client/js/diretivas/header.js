@@ -14,7 +14,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
           cancelButtonColor: "#d33",
           confirmButtonText: "yes"
         }).then((result) => {
-          if (result) {
+          if (result.isConfirmed) {
             LoginService.userLogOut();
           }
         });
@@ -22,10 +22,6 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
 
       const onProfileClick = () => {
         scope.showProfileDropDown = !scope.showProfileDropDown;
-	  };
-
-      const onProfileClickOutside = () => {
-        scope.showProfileDropDown = false;
       };
 
       const onWriteClick = () => {
@@ -33,7 +29,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
           templateUrl: "../../views/writePost.html",
           controller: "PostModalController",
           size: "lg"
-		});
+        });
 
         uibModalInstance.result.then(
           () => {
@@ -43,7 +39,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
             console.log("write post cancelled");
           }
         );
-	  };
+      };
 
       const closeDropdown = function (event) {
         const dropdown = document.querySelector(".fa-user");
@@ -55,7 +51,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
             !profileButton.contains(event.target)
           ) {
             scope.showProfileDropDown = false;
-            scope.$apply(); // $apply : revisa alterações feitas no scope do frontend
+            scope.$apply(); // $apply : revisa alterações feitas no scope
           }
         }
       };
@@ -63,10 +59,14 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
       $document.on("click", closeDropdown);
       $document.on("scroll", closeDropdown);
 
+      const openUserPosts = function () {
+        console.log("pooow");
+      };
+
       scope.logOut = logOut;
       scope.onWriteClick = onWriteClick;
       scope.onProfileClick = onProfileClick;
-      scope.onProfileClickOutside = onProfileClickOutside;
+      scope.openUserPosts = openUserPosts;
     }
   };
 });

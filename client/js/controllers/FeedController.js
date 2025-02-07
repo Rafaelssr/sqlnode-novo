@@ -6,9 +6,6 @@ myApp.controller("FeedController", function ($scope, PostService) {
     })
     .catch((error) => {
       console.log(error);
-	});
+    });
 
-	$scope.openExtraActions = function () {
-		
-	}
 });

@@ -15,7 +15,11 @@ myApp.service("postService", function ($http) {
     return $http.get(`${baseUrl}post`, auth);
   };
 
-  this.updatePosts = (data) => {
+  this.updatePost = (data) => {
     return $http.put(`${baseUrl}post`, data, auth);
+  };
+
+  this.deletePost = (data) => {
+    return $http.delete(`${baseUrl}post/${post.id}`, data, auth);
   };
 });

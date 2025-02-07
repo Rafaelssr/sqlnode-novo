@@ -36,6 +36,7 @@ router.put(
   requiredLogin,
   postController.update
 );
+
 router.delete("/:id", postController.delete);
 
 module.exports = router;

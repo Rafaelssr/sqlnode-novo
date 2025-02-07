@@ -1,49 +1,57 @@
 <div class="postsDiv">
   <div class="postsHeader">
-    <i class="fa-solid fa-plus post-header-elements plus-icon"></i>
-    <span class="post-header-elements">For you</span>
-    <span class="post-header-elements">Following</span>
+		<i class="fa-solid fa-plus post-header-elements plus-icon"></i>
+		<span class="post-header-elements">For you</span>
+		<span class="post-header-elements">Following</span>
   </div>
-
-  <div ng-repeat="post in posts" class="post">
-    <div class="post-content">
-      <div class="post-info">
-        <span class="post-profile">
-          <img
-            ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
-            class="profile-image"
-          />
-          <span class="user-name">{{post.user.name}}</span>
-        </span>
-        <h3 class="post-title">{{post.title}}</h3>
-        <h5 class="post-summary">{{post.summary}}</h5>
-        <span class="post-meta">
-          <span class="date">{{post.createdAt | formatDate}}</span>
-          <span class="likes">
-            <i
-              class="fa-regular fa-heart be-pointer"
-              ng-click="like(post.id, $event)"
-            ></i>
-            {{post.post_likes}}
-          </span>
-          <span class="comments">
-            <i class="fa-regular fa-comment"></i>
-            {{post.comments}}
-          </span>
-		  <span class="editPost">
-			<i class="fa-solid fa-ellipsis" ng-cick="openExtraActions()"></i>
-		  </span>
-        </span>
-      </div>
-
-      <div class="post-thumbnail">
-        <img
-          ng-src="{{post.post_thumbnail || 'https://placehold.co/120x90'}}"
-          alt="Post Thumbnail"
-          class="postThumbnail"
-        />
-      </div>
-    </div>
-    <div class="post-line"></div>
+  <div ng-repeat="post in posts | filter:searchText" class="post">
+		<div class="post-content">
+			<div class="post-info">
+				<span class="post-profile">
+				<img
+					ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
+					class="profile-image"
+				/>
+				<span class="user-name">{{post.user.name}}</span>
+				</span>
+				<h3 class="post-title">{{post.title}}</h3>
+				<h5 class="post-summary">{{post.summary}}</h5>
+				<span class="post-meta">
+				<span class="date">{{post.createdAt | formatDate}}</span>
+				<span class="postLikeSection">
+					<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
+					{{post.post_likes}}
+				</span>
+				<span class="postCommentSection">
+					<i class="fa-regular fa-comment" title="Comments"></i>
+					{{post.comments}}
+				</span>
+				<span class="actionsSection">
+					<i class="fa-solid fa-ellipsis" ng-click="onExtraActionsClick(post.id)" title="More"></i>
+					<div ng-show="ExtraActionsSection === post.id">
+						<ul class="doca-dropdown__list ellipsis-ul">
+							<li class="doca-dropdown__list__item doca-dropdown__list__item--action ellipsis-li">
+								<i class="fa-light fa-pen-fancy"></i>
+								Edit Post
+							</li>
+							<hr
+							class="doca-separator"
+							/>
+							<li class="doca-dropdown__list__item doca-dropdown__list__item--action" ng-click="postExclusion()">
+								<i class="fa-light fa-circle-minus"></i>
+								Delete Post
+							</li>
+						</ul>
+					</div>
+				</span>
+			</div>
+			<div class="post-thumbnail">
+				<img
+				ng-src="{{post.post_thumbnail || 'https://placehold.co/120x90'}}"
+				alt="Post Thumbnail"
+				class="postThumbnail"
+				/>
+			</div>
+		</div>
   </div>
 </div>

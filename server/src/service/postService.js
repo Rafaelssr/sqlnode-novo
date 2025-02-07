@@ -60,12 +60,14 @@ class PostService {
     }
   }
 
-  async deletePost(id) {
+  async deletePost(id, user_id) {
     const post = await Post.findByPk(id);
     if (!post) {
       throw new Error("o post não existe para que possa ser deletado.");
     }
-
+    if (post.id !== user_id) {
+      throw new Error("Você não tem permissão para deletar este post");
+    }
     await post.destroy();
     return { message: "O post foi deletado com sucesso!" };
   }

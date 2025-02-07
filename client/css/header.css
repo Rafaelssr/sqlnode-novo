@@ -83,11 +83,7 @@
 	display: none;
 }
 
-[ng-show="showProfileDropDown"] {
-	display: block;
-}
-
-.doca-dropdown__list {
+.doca-dropdown__list  {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -101,6 +97,11 @@
 .doca-dropdown__list__item:hover {
 	background: #f0f0f0;
 }
+
+[ng-show="showProfileDropDown"] {
+	display: block;
+}
+
 
 #dropDownItem{
 	align-items: center;
