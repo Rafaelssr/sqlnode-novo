@@ -19,7 +19,11 @@ myApp.service("postService", function ($http) {
     return $http.put(`${baseUrl}post`, data, auth);
   };
 
-  this.deletePost = (data) => {
-    return $http.delete(`${baseUrl}post/${post.id}`, data, auth);
+  this.showPost = (postId) => {
+    return $http.get(`${baseUrl}post/${postId}`);
+  };
+
+  this.deletePost = (postId) => {
+    return $http.delete(`${baseUrl}post/${postId}`, auth);
   };
 });

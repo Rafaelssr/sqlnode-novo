@@ -18,10 +18,8 @@ myApp.controller(
       $scope.showLoginAlert = false;
       LoginService.userLogin($scope.user)
         .then((resp) => {
-          console.log($scope.user);
           $window.localStorage.setItem("id", resp.data.id);
           $window.localStorage.setItem("token", resp.data.token);
-
           $state.go("home");
         })
         .catch((error) => {

@@ -2,6 +2,7 @@ myApp.controller(
   "PostModalController",
   function ($scope, postService, $uibModalInstance) {
     const user_id = localStorage.getItem("id");
+
     $scope.post = {
       user_id,
       title: "",
@@ -28,6 +29,7 @@ myApp.controller(
         .createPost($scope.post)
         .then(() => {
           $scope.closePostModal();
+          listPosts();
         })
         .catch((error) => {
           console.log(error);

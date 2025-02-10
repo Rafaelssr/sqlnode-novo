@@ -1,4 +1,4 @@
-myApp.directive("customFeed", function (postService) {
+myApp.directive("customFeed", function (postService, $window) {
   return {
     restrict: "E",
     templateUrl: "../../views/feed.html",
@@ -17,18 +17,24 @@ myApp.directive("customFeed", function (postService) {
 
       init();
 
-      const onExtraActionsClick = (post_id) => {
-       scope.ExtraActionsSection = scope.ExtraActionsSection === post_id ? false : post_id;
-	   console.log("Toggle dropdown for post:", post_id, "New State:", scope.ExtraActionsSection);
+      const onExtraActionsClick = postId => {
+        scope.ExtraActionsSection =
+          scope.ExtraActionsSection === postId ? false : postId;
       };
 
-		const postExclusion = function () {
-			postService.deletePost().then(() => {
-				console.log(post);
-			})
-		}
-		scope.onExtraActionsClick = onExtraActionsClick;
-		scope.postExclusion = postExclusion;
+      const postExclusion = function (id) {
+        console.log(id, "id");
+        console.log(scope.posts);
+        postService.deletePost(id).then(() => {
+          listPosts();
+        });
+	  };
+
+      const currentUser = $window.localStorage.getItem("id");
+
+      scope.currentUser = currentUser;
+      scope.postExclusion = postExclusion;
+      scope.onExtraActionsClick = onExtraActionsClick;
     }
   };
 });

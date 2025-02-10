@@ -24,9 +24,8 @@ router.get(
 );
 
 router.get(
-  "/:user_id",
+  "/:id",
   schemaValidator.validate(postSchema.listPost),
-  requiredLogin,
   postController.show
 );
 
@@ -37,6 +36,6 @@ router.put(
   postController.update
 );
 
-router.delete("/:id", postController.delete);
+router.delete("/:id", requiredLogin, postController.delete);
 
 module.exports = router;

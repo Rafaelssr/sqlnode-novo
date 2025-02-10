@@ -19,10 +19,13 @@
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="./css/feed.css" />
     <link rel="stylesheet" href="./css/styles.css" />
-	<link rel="stylesheet" href="./css/writePost.css">
+    <link rel="stylesheet" href="./css/writePost.css" />
+    <link rel="stylesheet" href="./css/accessPost.css" />
+    <link rel="stylesheet" href="./css/loader.css" />
   </head>
   <body ng-app="MediumAPI-app">
     <div>
+      <div class="loader" ng-show="$root.isLoading"></div>
       <ui-view></ui-view>
     </div>
 
@@ -40,6 +43,7 @@
     <script src="./js/controllers/RegisterController.js"></script>
     <script src="./js/controllers/PostModalController.js"></script>
     <script src="./js/controllers/FeedController.js"></script>
+    <script src="./js/controllers/accessPostController.js"></script>
 
     <!-- diretivas -->
     <script src="./js/diretivas/header.js"></script>
@@ -52,5 +56,6 @@
 
     <!-- filter -->
     <script src="./js/filters/dateFilter.js"></script>
+
   </body>
 </html>

@@ -19,13 +19,9 @@ class PostService {
     return newPost;
   }
 
-  async showPost(user_id) {
-    const post = await Post.findOne({
-      where: {
-        user_id
-      }
-    });
-
+  async showPost(id) {
+    const post = await Post.findByPk(id);
+    console.log(post);
     return post;
   }
 
@@ -60,13 +56,11 @@ class PostService {
     }
   }
 
-  async deletePost(id, user_id) {
+  async deletePost(id) {
     const post = await Post.findByPk(id);
+    console.log(post, "post");
     if (!post) {
       throw new Error("o post não existe para que possa ser deletado.");
-    }
-    if (post.id !== user_id) {
-      throw new Error("Você não tem permissão para deletar este post");
     }
     await post.destroy();
     return { message: "O post foi deletado com sucesso!" };

@@ -9,7 +9,7 @@ myApp.service("LoginService", function ($http, $state) {
       return { message: "O token não foi encontrado" };
     }
 
-    localStorage.removeItem("id");
+	localStorage.removeItem("id");
     localStorage.removeItem("token");
     $state.go("login");
   };

@@ -20,6 +20,34 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/register.html",
     controller: "RegisterController"
   });
+  $stateProvider.state("accessPost", {
+    name: "accessPost",
+    templateUrl: "../views/accessPost.html",
+    url: "/access/post/:id",
+    controller: "accessPostController"
+  });
 
   $urlRouterProvider.otherwise("/login");
 });
+
+myApp.run([
+  "$rootScope",
+  function ($rootScope) {
+    $rootScope.isLoading = false;
+
+    $rootScope.$on("$stateChangeStart", function () {
+      console.log("State change started 🚀");
+      $rootScope.isLoading = true;
+    });
+
+    $rootScope.$on("$stateChangeSuccess", function () {
+      console.log("State change success ✅");
+      $rootScope.isLoading = false;
+    });
+
+    $rootScope.$on("$stateChangeError", function () {
+      console.log("State change error ❌");
+      $rootScope.isLoading = false;
+    });
+  }
+]);

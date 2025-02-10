@@ -4,8 +4,7 @@ myApp.controller("FeedController", function ($scope, PostService) {
     .then(() => {
       $scope.posts = $scope.data;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
-
 });

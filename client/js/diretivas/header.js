@@ -7,7 +7,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
       const logOut = () => {
         scope.loading = false;
         Swal.fire({
-          title: "log out?",
+          title: "Are you sure you want to log out?",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085D6",
