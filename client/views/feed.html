@@ -7,17 +7,19 @@
   <div ng-repeat="post in posts | filter:searchText" class="post">
 		<div class="post-content">
 			<div class="post-info">
-				<span class="post-profile">
-					<img
-						ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
-						class="profile-image"
-					/>
-					<span class="user-name">{{post.user.name}}</span>
-				</span>
-				<h3 class="post-title">{{post.title}}</h3>
-				<h5 class="post-summary">{{post.summary}}</h5>
+				<div class="accessPostContact" ui-sref="post({ id: post.id })">
+					<span class="post-profile">
+						<img
+							ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
+							class="profile-image"
+						/>
+						<span class="user-name">{{post.user.name}}</span>
+					</span>
+					<h3 class="post-title">{{post.title}}</h3>
+					<h5 class="post-summary">{{post.summary}}</h5>
+				</div>
 				<span class="post-meta">
-				<span class="date">{{post.createdAt | formatDate}}</span>
+					<span class="date">{{post.createdAt | formatDate}}</span>
 				<span class="postLikeSection">
 					<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
 					{{post.post_likes}}

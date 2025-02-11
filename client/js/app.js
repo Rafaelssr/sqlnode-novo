@@ -20,11 +20,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/register.html",
     controller: "RegisterController"
   });
-  $stateProvider.state("accessPost", {
-    name: "accessPost",
-    templateUrl: "../views/accessPost.html",
-    url: "/access/post/:id",
-    controller: "accessPostController"
+  $stateProvider.state("post", {
+    name: "post",
+    url: "/post/:id",
+    templateUrl: "../views/post.html",
+    controller: "postController"
   });
 
   $urlRouterProvider.otherwise("/login");
