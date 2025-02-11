@@ -1,10 +1,10 @@
-myApp.controller("postController", function ($scope, $state, postService) {
+myApp.controller("PostController", function ($scope, $state, postService) {
+  $scope.post = [];
   const postId = $state.params.id;
-
   postService
     .showPost(postId)
     .then((resp) => {
-      $scope.post = resp.data;
+		$scope.post = resp.data.post;
     })
     .catch((error) => {
       console.log(error);

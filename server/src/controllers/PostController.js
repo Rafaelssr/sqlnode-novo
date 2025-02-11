@@ -24,8 +24,9 @@ class PostController {
 
   async show(req, res) {
     try {
-      const { postId } = req.params;
-      const post = await postService.showPost(postId);
+      const { id } = req.params;
+      console.log(req.params);
+      const post = await postService.showPost(id);
       return res.status(200).json({ post });
     } catch (error) {
       return res.status(400).json(error);
@@ -34,7 +35,8 @@ class PostController {
 
   async update(req, res) {
     try {
-      const { id, ...data } = req.body;
+      const { id } = req.params;
+      const data = req.body;
       const updatedPost = await postService.updatePost(id, data);
       return updatedPost;
     } catch (error) {
@@ -45,8 +47,6 @@ class PostController {
 
   async delete(req, res) {
     try {
-      console.log(req.params, "params");
-
       const postId = req.params.id;
 
       const deletedPost = await postService.deletePost(postId);

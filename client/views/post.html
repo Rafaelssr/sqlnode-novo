@@ -1,34 +1,39 @@
 <custom-header></custom-header>
-<div class="EditPostDiv">
-	<div class="postTitle">
-		<h1>{{post.title}}</h1>
-	</div>
-		<div class="post-info">
-			<span>
-				<img
-					src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
-					class="profile-img"
-				/>
-			</span>
-			<div class="post-author">
-				<span> {{post.user.name}} </span>
-				</div>
-				<div>.</div>
-				<div>
-					<h5>Follow</h5>
-				</div>
-			</div>
+<div class="postContainer">
+  <div class="postTitle">
+    <h1>{{post.title}}</h1>
+  </div>
+  <div class="postInfo">
+		<span>
+			<img
+				src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
+				class="postProfileImg"
+			/>
+		</span>
+		<div class="postAuthor">
+			<span>{{post.user.name}}</span>
 		</div>
-		<hr class="doca-separator"/>
-		<div class="actions">
-			<span class="like">
-				<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
-				{{post.post_likes}}
-			</span>
-			<span class="comment">
-				<i class="fa-regular fa-comment" title="Comments"></i>
-				{{post.comments}}
-			</span>
+		<div class="postDot">•</div>
+		<div class="postFollow">
+			<h5>Follow</h5>
 		</div>
-		<div class="post-content"><p>{{post.text}}</p></div>
+		<div class="postDate">
+			{{post.createdAt | formatDate}}
+		</div>
+  </div>
+  <hr class="postSeparator"/>
+  <div class="postActions">
+		<span class="postLike">
+			<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
+			{{post.post_likes}}
+		</span>
+		<span class="postComment">
+			<i class="fa-regular fa-comment" title="Comments"></i>
+			{{post.comments}}
+		</span>
+  </div>
+  <hr class="postSeparator"/>
+  <div class="postContent">
+    	<p>{{post.text}}</p>
+  </div>
 </div>

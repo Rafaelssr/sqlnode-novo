@@ -1,4 +1,4 @@
-myApp.directive("customFeed", function (postService, $window) {
+myApp.directive("customFeed", function (postService, $window, $uibModal) {
   return {
     restrict: "E",
     templateUrl: "../../views/feed.html",
@@ -17,21 +17,36 @@ myApp.directive("customFeed", function (postService, $window) {
 
       init();
 
-      const onExtraActionsClick = postId => {
+      const onExtraActionsClick = (postId) => {
         scope.ExtraActionsSection =
           scope.ExtraActionsSection === postId ? false : postId;
       };
 
       const postExclusion = function (id) {
-        console.log(id, "id");
-        console.log(scope.posts);
         postService.deletePost(id).then(() => {
           listPosts();
         });
-	  };
+      };
+
+      const onEditClick = (post_id) => {
+
+        let editPostModal = $uibModal.open({
+          templateUrl: "../../views/editPost.html",
+          controller: "EditPostController",
+          size: "lg",
+          resolve: {
+            post_id
+          }
+        });
+
+        editPostModal.result.then(() => {
+          console.log("edit post modal closed");
+        });
+      };
 
       const currentUser = $window.localStorage.getItem("id");
 
+      scope.onEditClick = onEditClick;
       scope.currentUser = currentUser;
       scope.postExclusion = postExclusion;
       scope.onExtraActionsClick = onExtraActionsClick;

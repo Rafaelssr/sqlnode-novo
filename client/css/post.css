@@ -1,0 +1,75 @@
+.postContainer {
+	max-width: 750px;
+	margin: 40px auto;
+	font-family: 'Arial', sans-serif;
+	line-height: 1.6;
+}
+
+.postTitle h1 {
+	font-size: 32px;
+	font-weight: bold;
+	text-align: flex-start;
+	margin-bottom: 15px;
+}
+
+.postInfo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+	color: #555;
+}
+
+.postProfileImg {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.postAuthor {
+	font-weight: bold;
+}
+
+.postDot {
+	font-size: 16px;
+	color: #999;
+}
+
+.postFollow h5 {
+	font-size: 13px;
+	font-weight: 600;
+	color: #008000;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.postDate {
+	color: #666;
+  }
+
+.postSeparator {
+	border: none;
+	height: 1px;
+	background-color: #ddd;
+	margin: 20px 0;
+}
+
+.postActions {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 14px;
+	color: #555;
+}
+
+.postActions i {
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.postContent {
+	font-size: 18px;
+	color: #333;
+	margin-top: 20px;
+}
+

@@ -5,9 +5,9 @@
 		<span class="post-header-elements">Following</span>
   </div>
   <div ng-repeat="post in posts | filter:searchText" class="post">
-		<div class="post-content">
+		<div class="post-content" ui-sref="post({ id: post.id })">
 			<div class="post-info">
-				<div class="accessPostContact" ui-sref="post({ id: post.id })">
+				<div class="accessPost">
 					<span class="post-profile">
 						<img
 							ng-src="{{post.user.profile_img || 'https://placehold.co/40x40'}}"
@@ -28,11 +28,11 @@
 					<i class="fa-regular fa-comment" title="Comments"></i>
 					{{post.comments}}
 				</span>
-				<span class="actionsSection" ng-show="post.user_id == currentUser">
+				<span class="actionsSection" ng-show="post.user_id == currentUser" ng-click="$event.stopPropagation()">
 					<i class="fa-solid fa-ellipsis" ng-click="onExtraActionsClick(post.id)" title="More"></i>
 					<div ng-show="ExtraActionsSection === post.id">
 						<ul class="doca-dropdown__list ellipsis-ul">
-							<li class="doca-dropdown__list__item doca-dropdown__list__item--action ellipsis-li">
+							<li class="doca-dropdown__list__item doca-dropdown__list__item--action ellipsis-li" ng-click="onEditClick(post.id)">
 								<i class="fa-light fa-pen-fancy"></i>
 								Edit Post
 							</li>

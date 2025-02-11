@@ -24,30 +24,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     name: "post",
     url: "/post/:id",
     templateUrl: "../views/post.html",
-    controller: "postController"
+    controller: "PostController"
   });
 
   $urlRouterProvider.otherwise("/login");
 });
-
-myApp.run([
-  "$rootScope",
-  function ($rootScope) {
-    $rootScope.isLoading = false;
-
-    $rootScope.$on("$stateChangeStart", function () {
-      console.log("State change started 🚀");
-      $rootScope.isLoading = true;
-    });
-
-    $rootScope.$on("$stateChangeSuccess", function () {
-      console.log("State change success ✅");
-      $rootScope.isLoading = false;
-    });
-
-    $rootScope.$on("$stateChangeError", function () {
-      console.log("State change error ❌");
-      $rootScope.isLoading = false;
-    });
-  }
-]);

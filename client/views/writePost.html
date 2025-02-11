@@ -1,31 +1,29 @@
 <div class="writePostModal">
   <div class="textDiv">
-    <h2>Write a post</h2>
-    <p>Title:</p>
-    <input id="postTitle" type="text" ng-model="post.title" />
-    <p>Summary:</p>
-    <input id="postSummary" type="text" ng-model="post.summary" />
+		<h2>Write a post</h2>
+		<p>Title:</p>
+		<input id="postTitle" type="text" ng-model="post.title" />
+		<p>Summary:</p>
+		<input id="postSummary" type="text" ng-model="post.summary" />
   </div>
   <div class="post-thumbnailDiv">
-    <p>Thumbnail:</p>
-    <input
-      type="text"
-      ng-model="post.post_thumbnail"
-      placeholder="Insira uma URL para a thumbnail"
-    />
-  </div>
+		<p>Thumbnail:</p>
+		<input
+		type="text"
+		ng-model="post.post_thumbnail"
+		placeholder="Insira uma URL"
+		/>
+	</div>
   <div>
-    <p>Text:</p>
-    <textarea
-      id="postText"
-      placeholder="tell your story..."
-      ng-model="post.text"
-    ></textarea>
-  </div>
-  <div class="alertDiv">
+		<p>Text:</p>
+		<textarea
+		id="postText"
+		placeholder="tell your story..."
+		ng-model="post.text"
+		></textarea>
   </div>
   <div class="postButtonDiv">
-    <button ng-click="publishPost()" id="publishButton">Publish</button>
-    <button ng-click="dismiss()" id="cancelButton">Cancel</button>
+		<button ng-click="publishPost()" id="publishButton">Publish</button>
+		<button ng-click="dismiss()" id="cancelButton">Cancel</button>
   </div>
 </div>

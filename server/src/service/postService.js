@@ -20,8 +20,20 @@ class PostService {
   }
 
   async showPost(id) {
-    const post = await Post.findByPk(id);
-    console.log(post);
+    const post = await Post.findOne({
+      where: {
+        deleted_at: null,
+        id: id
+      },
+      include: [
+        {
+          model: User,
+          as: "user",
+          attributes: ["name", "profile_img"]
+        }
+      ]
+    });
+
     return post;
   }
 
@@ -42,26 +54,38 @@ class PostService {
     return posts;
   }
 
-  async updatePost(id, data) {
-    const post = await Post.findByPk(id);
+	async updatePost(id, data) {
+	  console.log(id)
+    const post = await Post.findOne({
+      where: {
+        deleted_at: null,
+        id
+      },
+      include: [
+        {
+          model: User,
+          as: "user",
+          attributes: ["name", "id"]
+        }
+      ]
+    });
     if (!post) {
       throw new Error("O post em questão não existe.");
     } else {
       const updatedPost = await Post.update(data, {
-        where: {
-          id
-        }
+        where: { id }
       });
+
       return updatedPost;
     }
   }
 
   async deletePost(id) {
     const post = await Post.findByPk(id);
-    console.log(post, "post");
     if (!post) {
       throw new Error("o post não existe para que possa ser deletado.");
     }
+
     await post.destroy();
     return { message: "O post foi deletado com sucesso!" };
   }

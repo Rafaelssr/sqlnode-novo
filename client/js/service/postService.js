@@ -15,8 +15,8 @@ myApp.service("postService", function ($http) {
     return $http.get(`${baseUrl}post`, auth);
   };
 
-  this.updatePost = (data) => {
-    return $http.put(`${baseUrl}post`, data, auth);
+  this.updatePost = (data, postId) => {
+    return $http.put(`${baseUrl}post/${postId}`, data, auth);
   };
 
   this.showPost = (postId) => {

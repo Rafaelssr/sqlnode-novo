@@ -1,6 +1,6 @@
 myApp.controller(
   "PostModalController",
-  function ($scope, postService, $uibModalInstance) {
+  function ($scope, $uibModalInstance, postService) {
     const user_id = localStorage.getItem("id");
 
     $scope.post = {

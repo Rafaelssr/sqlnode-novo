@@ -60,7 +60,6 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
       $document.on("scroll", closeDropdown);
 
       const openUserPosts = function () {
-        console.log("pooow");
       };
 
       scope.logOut = logOut;
