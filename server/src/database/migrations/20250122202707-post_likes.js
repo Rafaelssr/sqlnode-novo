@@ -14,12 +14,18 @@ module.exports = {
           user_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
+            references: {
+              model: "users",
+              key: "id"
+            }
           },
           post_id: {
-            type: Sequelize.STRING,
-            allowNull: false
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+              model: "posts",
+              key: "id"
+            }
           },
           liked_at: {
             type: Sequelize.DATE,

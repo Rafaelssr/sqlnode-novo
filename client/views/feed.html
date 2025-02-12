@@ -20,8 +20,8 @@
 				</div>
 				<span class="post-meta" ng-click="$event.stopPropagation()">
 					<span class="date">{{post.createdAt | formatDate}}</span>
-				<span class="postLikeSection">
-					<i class="fa-regular fa-heart be-pointer" title="Likes" ng-click="createLike()"></i>
+				<span class="postLikeSection"  ng-click="createLike(post.id)">
+					<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
 					{{post.post_likes}}
 				</span>
 				<span class="postCommentSection">

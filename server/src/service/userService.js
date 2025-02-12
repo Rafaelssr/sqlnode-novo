@@ -3,20 +3,27 @@ class UserService {
   async createUser(data) {
     const user = await User.findOne({
       where: {
-        email: data.user.email
+        email: data.email
       }
     });
-
+    console.log(user, "user");
     if (user) {
       throw new Error("Já existe esse usuário");
     }
 
-    if (!data.user.profile_img) {
-      data.user.profile_img =
+    if (!data.profile_img) {
+      data.profile_img =
         "https://www.vecteezy.com/vector-art/2318271-user-profile-icon";
     }
 
-    const createdUser = await User.create(data);
+    const createdUser = await User.create({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      profile_img: data.profile_img
+    });
+
+    console.log(createdUser);
     return createdUser;
   }
 

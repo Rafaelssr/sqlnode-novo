@@ -53,7 +53,7 @@ module.exports = {
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();
-      throw new Error;
+      throw new Error();
     }
   }
 };

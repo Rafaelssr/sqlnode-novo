@@ -2,8 +2,8 @@ const userService = require("../service/userService");
 
 class UserController {
   async store(req, res) {
-    // ok
     try {
+      console.log(req.body);
       const user = await userService.createUser(req.body);
       return res.status(200).json(user);
     } catch (error) {
@@ -12,7 +12,6 @@ class UserController {
   }
 
   async index(res) {
-    // ok
     try {
       const indexUsers = await userService.listUsers();
       console.log(res, "res");
@@ -23,7 +22,6 @@ class UserController {
   }
 
   async show(req, res) {
-    // ok
     try {
       const { id } = req.params;
       const showUser = await userService.getUser(id);
@@ -39,7 +37,6 @@ class UserController {
   }
 
   async update(req, res) {
-    // ok
     try {
       const { id } = req.params;
       const updatedUser = await userService.updateUser(id, req.body);

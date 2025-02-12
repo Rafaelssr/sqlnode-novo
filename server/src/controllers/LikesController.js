@@ -3,10 +3,13 @@ const likeService = require("../service/likeService");
 class LikeController {
   async store(req, res) {
     try {
-      const { id } = req.params;
-      const like = await likeService.createLike(id);
+      const { postId } = req.params;
+      const { userId } = req.body;
+      console.log(req.body, "req.body");
+      const like = await likeService.createLike(userId, postId);
       return res.status(200).json({ like });
     } catch (error) {
+      console.log(error);
       return res.status(400).json({
         message: error
       });
@@ -17,7 +20,7 @@ class LikeController {
     try {
       const { id } = req.params;
       const deletedLike = await likeService.deleteLike(id);
-		return res.stauts(200).json({ deletedLike });
+      return res.stauts(200).json({ deletedLike });
     } catch (error) {
       return res.status(400).json({
         message: error

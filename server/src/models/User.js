@@ -16,14 +16,14 @@ class User extends Model {
         },
         password_hash: {
           type: DataTypes.STRING,
-          defaultValue: ""
+          allowNull: true
         },
         password: {
           type: DataTypes.VIRTUAL,
-          defaultValue: ""
+          allowNull: true
         },
         profile_img: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING
         }
       },
       {
@@ -31,11 +31,8 @@ class User extends Model {
         paranoid: true,
         hooks: {
           async beforeSave(user) {
-            if (user.dataValues.password) {
-              user.dataValues.password_hash = await bcryptjs.hash(
-                user.dataValues.password,
-                6
-              );
+            if (user.password) {
+              user.password_hash = await bcryptjs.hash(user.password, 6);
             } else {
               throw new Error("É necessário que o usuário possua uma senha!");
             }

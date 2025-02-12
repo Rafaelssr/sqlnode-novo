@@ -1,4 +1,6 @@
 const { Model, Sequelize } = require("sequelize");
+const User = require("./User");
+const Post = require("./Post");
 class Likes extends Model {
   static init(sequelize) {
     super.init(
@@ -11,20 +13,11 @@ class Likes extends Model {
         user_id: {
           type: Sequelize.INTEGER,
           defaultValue: "",
-          allowNull: false,
-          references: {
-            model: "users",
-            as: "user_id"
-          }
+          allowNull: false
         },
         post_id: {
           type: Sequelize.INTEGER,
-          defaultValue: "",
-          allowNull: false,
-          references: {
-            model: "posts",
-            as: "post_id"
-          }
+          allowNull: false
         }
       },
       {

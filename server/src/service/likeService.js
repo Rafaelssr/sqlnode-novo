@@ -1,23 +1,36 @@
 const Like = require("../models/Likes");
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 class LikeService {
-  async createLike(post_id) {
-    const post = await Post.findByPk(post_id);
+  async createLike(userId, postId) {
+    const post = await Post.findOne({
+      where: {
+        deleted_at: null
+      },
+      include: [
+        {
+          model: User,
+          as: "user",
+          attributes: ["name", "profile_img"]
+        }
+      ]
+    });
     if (!post) {
       throw new Error("O post não existe!");
     }
-    const existingLike = Like.hasOne({
+
+    const existingLike = Like.findOne({
       where: {
-        user_id,
-        post_id
+        user_id: userId,
+        post_id: postId
       }
     });
 
     if (existingLike) {
       throw new Error("Você já deu um like nesse post!");
     } else {
-      const like = await Like.findByPk(post_id);
+      const like = await Like.findByPk(postId);
       await like.create();
     }
   }
@@ -27,7 +40,7 @@ class LikeService {
     if (!post) {
       throw new Error("O post não existe.");
     }
-    const existingLike = await Like.hasOne({
+    const existingLike = Like.findOne({
       where: {
         user_id,
         post_id

@@ -1,8 +1,9 @@
 myApp.directive("customFeed", [
   "postService",
+  "likeService",
   "$window",
   "$uibModal",
-  function (postService, $window, $uibModal) {
+  function (postService, likeService, $window, $uibModal) {
     return {
       restrict: "E",
       templateUrl: "../../views/feed.html",
@@ -48,12 +49,11 @@ myApp.directive("customFeed", [
         };
 
         const currentUser = $window.localStorage.getItem("id");
-        const postId = scope.$resolve.id;
 
-        console.log(postId, "post id");
-
-        const createLike = () => {
-          console.log("like");
+        const createLike = (postId) => {
+          likeService.LikePost(currentUser, postId).then(() => {
+            listPosts();
+          });
         };
 
         scope.createLike = createLike;
