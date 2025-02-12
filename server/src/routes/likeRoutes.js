@@ -6,20 +6,13 @@ const schemaValidator = new SchemaValidator();
 
 const likeSchema = require("../Schemas/likeSchema");
 const requiredLogin = require("../middlewares/requiredLogin");
-const LikesController = require("../controllers/LikesController");
+const LikeController = require("../controllers/LikesController");
 
 router.post(
-  "/like",
+  "/:id",
   schemaValidator.validate(likeSchema.storeLike),
   requiredLogin,
-  LikesController.store
-);
-
-router.delete(
-  "/dislike",
-  schemaValidator.validate(likeSchema.deleteLike),
-  requiredLogin,
-  LikesController.delete
+  LikeController.store
 );
 
 module.exports = router;

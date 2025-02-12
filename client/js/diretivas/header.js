@@ -27,7 +27,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
       const onWriteClick = () => {
         let uibModalInstance = $uibModal.open({
           templateUrl: "../../views/writePost.html",
-          controller: "PostModalController",
+          controller: "WritePostController",
           size: "lg"
         });
 
@@ -51,7 +51,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
             !profileButton.contains(event.target)
           ) {
             scope.showProfileDropDown = false;
-            scope.$apply(); // $apply : revisa alterações feitas no scope
+            scope.$apply();
           }
         }
       };
@@ -59,8 +59,7 @@ myApp.directive("customHeader", function ($document, $uibModal, LoginService) {
       $document.on("click", closeDropdown);
       $document.on("scroll", closeDropdown);
 
-      const openUserPosts = function () {
-      };
+      const openUserPosts = function () {};
 
       scope.logOut = logOut;
       scope.onWriteClick = onWriteClick;

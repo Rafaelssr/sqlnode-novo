@@ -27,7 +27,7 @@ class App {
     this.app.use("/users", userRoutes);
     this.app.use("/token", tokenRoutes);
     this.app.use("/post", postRoutes);
-    this.app.use("/post/:id", likeRoutes);
+    this.app.use("/like", likeRoutes);
   }
 }
 

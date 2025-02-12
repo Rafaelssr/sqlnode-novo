@@ -1,4 +1,5 @@
 myApp.service("postService", function ($http) {
+  const baseUrl = "http://localhost:3001/";
   const userToken = localStorage.getItem("token");
 
   const auth = {

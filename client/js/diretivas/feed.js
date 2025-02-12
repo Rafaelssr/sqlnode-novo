@@ -1,55 +1,67 @@
-myApp.directive("customFeed", function (postService, $window, $uibModal) {
-  return {
-    restrict: "E",
-    templateUrl: "../../views/feed.html",
-    link: function (scope) {
-      scope.posts = [];
-      const init = () => {
-        listPosts();
-      };
-
-      const listPosts = () => {
-        postService.listPosts().then((resp) => {
-          console.log(resp.data, "resp");
-          scope.posts = resp.data;
-        });
-      };
-
-      init();
-
-      const onExtraActionsClick = (postId) => {
-        scope.ExtraActionsSection =
-          scope.ExtraActionsSection === postId ? false : postId;
-      };
-
-      const postExclusion = function (id) {
-        postService.deletePost(id).then(() => {
+myApp.directive("customFeed", [
+  "postService",
+  "$window",
+  "$uibModal",
+  function (postService, $window, $uibModal) {
+    return {
+      restrict: "E",
+      templateUrl: "../../views/feed.html",
+      link: function (scope) {
+        scope.posts = [];
+        const init = () => {
           listPosts();
-        });
-      };
+        };
 
-      const onEditClick = (post_id) => {
+        const listPosts = () => {
+          postService.listPosts().then((resp) => {
+            console.log(resp.data, "resp");
+            scope.posts = resp.data;
+          });
+        };
 
-        let editPostModal = $uibModal.open({
-          templateUrl: "../../views/editPost.html",
-          controller: "EditPostController",
-          size: "lg",
-          resolve: {
-            post_id
-          }
-        });
+        init();
 
-        editPostModal.result.then(() => {
-          console.log("edit post modal closed");
-        });
-      };
+        const onExtraActionsClick = (postId) => {
+          scope.ExtraActionsSection =
+            scope.ExtraActionsSection === postId ? false : postId;
+        };
 
-      const currentUser = $window.localStorage.getItem("id");
+        const postExclusion = function (id) {
+          postService.deletePost(id).then(() => {
+            listPosts();
+          });
+        };
 
-      scope.onEditClick = onEditClick;
-      scope.currentUser = currentUser;
-      scope.postExclusion = postExclusion;
-      scope.onExtraActionsClick = onExtraActionsClick;
-    }
-  };
-});
+        const onEditClick = (post_id) => {
+          let editPostModal = $uibModal.open({
+            templateUrl: "../../views/editPost.html",
+            controller: "EditPostController",
+            size: "lg",
+            resolve: {
+              post_id
+            }
+          });
+
+          editPostModal.result.then(() => {
+            console.log("edit post modal closed");
+          });
+        };
+
+        const currentUser = $window.localStorage.getItem("id");
+        const postId = scope.$resolve.id;
+
+        console.log(postId, "post id");
+
+        const createLike = () => {
+          console.log("like");
+        };
+
+        scope.createLike = createLike;
+        scope.onEditClick = onEditClick;
+        scope.currentUser = currentUser;
+        scope.postExclusion = postExclusion;
+        scope.onExtraActionsClick = onExtraActionsClick;
+      }
+    };
+  }
+]);

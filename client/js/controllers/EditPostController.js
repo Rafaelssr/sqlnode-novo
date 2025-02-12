@@ -9,7 +9,6 @@ myApp.controller(
     });
 
     $scope.editPost = () => {
-      debugger;
       postService
         .updatePost($scope.post, id)
         .then((resp) => {
