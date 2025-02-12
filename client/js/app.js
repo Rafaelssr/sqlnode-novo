@@ -23,8 +23,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state("post", {
     name: "post",
     url: "/post/:id",
-    templateUrl: "../views/post.html",
-    controller: "PostController"
+    templateUrl: "../views/viewPost.html",
+    controller: "ViewPostController"
   });
 
   $urlRouterProvider.otherwise("/login");

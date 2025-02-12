@@ -1,4 +1,4 @@
-myApp.controller("PostController", function ($scope, $state, postService) {
+myApp.controller("ViewPostController", function ($scope, $state, postService) {
   $scope.post = [];
   const postId = $state.params.id;
   postService

@@ -18,7 +18,7 @@
 					<h3 class="post-title">{{post.title}}</h3>
 					<h5 class="post-summary">{{post.summary}}</h5>
 				</div>
-				<span class="post-meta">
+				<span class="post-meta" ng-click="$event.stopPropagation()">
 					<span class="date">{{post.createdAt | formatDate}}</span>
 				<span class="postLikeSection">
 					<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
@@ -28,7 +28,7 @@
 					<i class="fa-regular fa-comment" title="Comments"></i>
 					{{post.comments}}
 				</span>
-				<span class="actionsSection" ng-show="post.user_id == currentUser" ng-click="$event.stopPropagation()">
+				<span class="actionsSection" ng-show="post.user_id == currentUser">
 					<i class="fa-solid fa-ellipsis" ng-click="onExtraActionsClick(post.id)" title="More"></i>
 					<div ng-show="ExtraActionsSection === post.id">
 						<ul class="doca-dropdown__list ellipsis-ul">
