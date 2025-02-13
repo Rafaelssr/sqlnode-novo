@@ -20,14 +20,11 @@
 				</div>
 				<span class="post-meta" ng-click="$event.stopPropagation()">
 					<span class="date">{{post.createdAt | formatDate}}</span>
-				<span class="postLikeSection"  ng-click="createLike(post.id)">
-					<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
-					{{post.post_likes}}
-				</span>
+					<span class="postLikeSection" ng-click="createLike(post) && showLikeCount(post)">
+						<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
+						{{post.post_likes || '0' }}
+					</span>
 				<span class="postCommentSection">
-					<i class="fa-regular fa-comment" title="Comments"></i>
-					{{post.comments}}
-				</span>
 				<span class="actionsSection" ng-show="post.user_id == currentUser">
 					<i class="fa-solid fa-ellipsis" ng-click="onExtraActionsClick(post.id)" title="More"></i>
 					<div ng-show="ExtraActionsSection === post.id">

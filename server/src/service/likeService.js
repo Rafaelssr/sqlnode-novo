@@ -4,9 +4,12 @@ const User = require("../models/User");
 
 class LikeService {
   async createLike(userId, postId) {
+    console.log(userId, "id of user");
+    console.log(postId, "id do post");
+
     const post = await Post.findOne({
       where: {
-        deleted_at: null
+        id: postId
       },
       include: [
         {
@@ -16,44 +19,56 @@ class LikeService {
         }
       ]
     });
+
     if (!post) {
       throw new Error("O post não existe!");
     }
 
-    const existingLike = Like.findOne({
+    const existingLike = await Like.findOne({
       where: {
         user_id: userId,
         post_id: postId
-      }
+      },
+      attributes: ["id", "user_id", "post_id"]
     });
 
-    if (existingLike) {
-      throw new Error("Você já deu um like nesse post!");
-    } else {
-      const like = await Like.findByPk(postId);
-      await like.create();
+    if (!existingLike) {
+      console.log("criou novo like");
+      await Like.create({
+        user_id: userId,
+        post_id: postId,
+        is_deleted: false
+      });
+
+      await post.increment("likes", { by: 1 });
     }
+    console.log(existingLike, "existingLike");
+    if (existingLike && existingLike.is_deleted) {
+      await existingLike.update({ is_deleted: false });
+      await post.increment("likes", { by: 1 });
+    } else {
+      console.log("like nao tava deletado");
+      await existingLike.update({ is_deleted: true });
+      await post.decrement("likes", { by: 1 });
+    }
+
+    const likeCount = await Like.count({
+      where: { post_id: postId, is_deleted: false }
+    });
+
+    return {
+      like_count: likeCount
+    };
   }
 
-  async deleteLike(post_id) {
-    const post = await Post.findByPk(post_id);
-    if (!post) {
-      throw new Error("O post não existe.");
-    }
-    const existingLike = Like.findOne({
+  async likeCount(postId) {
+    const count = await Like.count({
       where: {
-        user_id,
-        post_id
+        post_id: postId
       }
     });
-    if (!existingLike) {
-      throw new Error(
-        "Não é possível retirar o like quando o post não possui o mesmo."
-      );
-    } else {
-      const like = await Like.findByPk(post_id);
-      await like.destroy();
-    }
+    console.log(count);
+    return count;
   }
 }
 

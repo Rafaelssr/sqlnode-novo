@@ -82,6 +82,10 @@
 	color: #000;
 }
 
+.post-meta i.liked{
+	color:#0000;
+}
+
 [ng-show="ExtraActionsSection"] {
 	display: block;
 }

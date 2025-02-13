@@ -54,8 +54,7 @@ class PostService {
     return posts;
   }
 
-	async updatePost(id, data) {
-	  console.log(id)
+  async updatePost(id, data) {
     const post = await Post.findOne({
       where: {
         deleted_at: null,

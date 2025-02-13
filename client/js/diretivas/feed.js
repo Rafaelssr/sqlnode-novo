@@ -22,6 +22,18 @@ myApp.directive("customFeed", [
 
         init();
 
+        const showLikeCount = (post) => {
+          likeService
+            .LikeCount(post.id)
+            .then((count) => {
+              post.post_likes = count;
+              debugger;
+            })
+            .catch((error) => {
+              console.error("Error fetching like count:", error);
+            });
+        };
+
         const onExtraActionsClick = (postId) => {
           scope.ExtraActionsSection =
             scope.ExtraActionsSection === postId ? false : postId;
@@ -50,12 +62,22 @@ myApp.directive("customFeed", [
 
         const currentUser = $window.localStorage.getItem("id");
 
-        const createLike = (postId) => {
-          likeService.LikePost(currentUser, postId).then(() => {
-            listPosts();
-          });
+        const createLike = function (post) {
+          const postId = post.id;
+
+          likeService
+            .LikePost(currentUser, postId)
+            .then((likeResponse) => {
+              console.log(likeResponse);
+              post.isLiked = likeResponse.data.liked;
+              post.post_likes = likeResponse.data.like_count;
+            })
+            .catch((error) => {
+              console.error("Error liking post:", error);
+            });
         };
 
+        scope.showLikeCount = showLikeCount;
         scope.createLike = createLike;
         scope.onEditClick = onEditClick;
         scope.currentUser = currentUser;

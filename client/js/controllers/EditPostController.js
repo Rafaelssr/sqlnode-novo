@@ -23,8 +23,7 @@ myApp.controller(
     };
 
     $scope.closePostModal = function () {
-      $uibModalInstance.close();
-      console.log("postModalClosed");
+      $uibModalInstance.close("dismiss");
     };
   }
 );

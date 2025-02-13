@@ -14,7 +14,6 @@ class UserController {
   async index(res) {
     try {
       const indexUsers = await userService.listUsers();
-      console.log(res, "res");
       return res.status(200).json(indexUsers);
     } catch (error) {
       throw error;

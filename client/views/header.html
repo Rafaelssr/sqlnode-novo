@@ -1,7 +1,10 @@
 <div class="doca home-header">
   <div class="header-components">
-    <img src="../icons/icon-api.png" class="logo-img"/>
-    <input type="text" placeholder="Search" class="homePage-searchBar" ng-model="searchText"/>
+		<img src="../icons/icon-api.png" class="logo-img"/>
+		<div class="homePage-searchBar">
+			<i class="fa-light fa-magnifying-glass"></i>
+			<input type="text" placeholder="Search" ng-model="searchText" class="searchBar"/>
+		</div>
   </div>
   <div class="homepage-icons">
 	 <div ng-click="onWriteClick()">

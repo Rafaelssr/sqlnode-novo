@@ -6,7 +6,6 @@ class UserService {
         email: data.email
       }
     });
-    console.log(user, "user");
     if (user) {
       throw new Error("Já existe esse usuário");
     }
@@ -23,7 +22,6 @@ class UserService {
       profile_img: data.profile_img
     });
 
-    console.log(createdUser);
     return createdUser;
   }
 
@@ -60,7 +58,6 @@ class UserService {
         id
       }
     });
-    console.log(update);
     const updatedUser = await User.findByPk(id);
     return updatedUser;
   }

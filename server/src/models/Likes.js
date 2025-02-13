@@ -1,22 +1,29 @@
-const { Model, Sequelize } = require("sequelize");
-const User = require("./User");
-const Post = require("./Post");
+const { Model, DataTypes } = require("sequelize");
+
 class Likes extends Model {
   static init(sequelize) {
     super.init(
       {
         id: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
           autoIncrement: true,
           primaryKey: true
         },
         user_id: {
-          type: Sequelize.INTEGER,
-          defaultValue: "",
+          type: DataTypes.INTEGER,
           allowNull: false
         },
         post_id: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
+          allowNull: false
+        },
+        liked_at: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW
+        },
+        is_deleted: {
+          type: DataTypes.BOOLEAN,
           allowNull: false
         }
       },
@@ -24,8 +31,8 @@ class Likes extends Model {
         sequelize,
         tableName: "post_likes",
         modelName: "Likes",
-        timestamps: true,
-        paranoid: true
+        timestamps: false,
+        paranoid: false
       }
     );
   }

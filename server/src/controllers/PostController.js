@@ -17,7 +17,6 @@ class PostController {
 
       return res.status(200).json(indexPost);
     } catch (error) {
-      console.log(error, "error");
       return res.status(400).json({ message: error });
     }
   }
@@ -25,7 +24,6 @@ class PostController {
   async show(req, res) {
     try {
       const { id } = req.params;
-      console.log(req.params);
       const post = await postService.showPost(id);
       return res.status(200).json({ post });
     } catch (error) {
