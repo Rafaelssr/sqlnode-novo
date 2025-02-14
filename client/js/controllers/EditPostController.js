@@ -5,7 +5,6 @@ myApp.controller(
 
     postService.showPost(id).then((resp) => {
       $scope.post = resp.data;
-      console.log($scope.post);
     });
 
     $scope.editPost = () => {
@@ -13,7 +12,6 @@ myApp.controller(
         .updatePost($scope.post, id)
         .then((resp) => {
           $scope.post = resp.data.post;
-          console.log($scope.post);
           $scope.closePostModal();
           listPosts();
         })

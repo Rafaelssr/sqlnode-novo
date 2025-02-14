@@ -4,9 +4,6 @@ const User = require("../models/User");
 
 class LikeService {
   async createLike(userId, postId) {
-    console.log(userId, "id of user");
-    console.log(postId, "id do post");
-
     const post = await Post.findOne({
       where: {
         id: postId
@@ -24,32 +21,25 @@ class LikeService {
       throw new Error("O post não existe!");
     }
 
-    const existingLike = await Like.findOne({
+    const like = await Like.findOne({
       where: {
         user_id: userId,
         post_id: postId
       },
-      attributes: ["id", "user_id", "post_id"]
+      attributes: ["id", "user_id", "post_id", "is_deleted"]
     });
 
-    if (!existingLike) {
-      console.log("criou novo like");
-      await Like.create({
+    if (!like) {
+      const newLike = await Like.create({
         user_id: userId,
         post_id: postId,
         is_deleted: false
       });
 
-      await post.increment("likes", { by: 1 });
-    }
-    console.log(existingLike, "existingLike");
-    if (existingLike && existingLike.is_deleted) {
-      await existingLike.update({ is_deleted: false });
-      await post.increment("likes", { by: 1 });
-    } else {
-      console.log("like nao tava deletado");
-      await existingLike.update({ is_deleted: true });
-      await post.decrement("likes", { by: 1 });
+      console.log("like criado");
+      if (newLike) {
+        await post.increment("likes", { by: 1 });
+      }
     }
 
     const likeCount = await Like.count({
@@ -61,13 +51,34 @@ class LikeService {
     };
   }
 
+  async deleteLike(postId) {
+    const post = await Post.findByPk(postId);
+
+    if (!post) {
+      throw new Error("O post não existe.");
+    }
+    console.log(postId, "post id");
+    const like = await Like.findOne({
+      where: {
+        post_id: postId,
+        is_deleted: false
+      }
+    });
+
+    if (like) {
+      await like.update({ is_deleted: true });
+      await post.decrement("likes", { by: 1 });
+      console.log("like existe");
+    }
+  }
+
   async likeCount(postId) {
     const count = await Like.count({
       where: {
         post_id: postId
       }
     });
-    console.log(count);
+
     return count;
   }
 }

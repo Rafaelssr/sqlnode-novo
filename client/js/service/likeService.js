@@ -13,8 +13,10 @@ myApp.service("likeService", function ($http) {
   };
 
   this.LikeCount = (postId) => {
-    return $http.get(`${baseUrl}like/${postId}`).then((resp) => {
-      return resp.data.like_count;
-    });
+    return $http.get(`${baseUrl}like/${postId}`);
+  };
+
+  this.DislikePost = (userId, postId) => {
+    return $http.delete(`${baseUrl}like/${postId}`, { userId }, auth);
   };
 });

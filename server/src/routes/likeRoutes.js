@@ -15,4 +15,8 @@ router.post(
   LikeController.store
 );
 
+router.delete("/:id", requiredLogin, LikeController.delete);
+
+router.get("/:id", LikeController.show);
+
 module.exports = router;

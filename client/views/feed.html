@@ -20,9 +20,9 @@
 				</div>
 				<span class="post-meta" ng-click="$event.stopPropagation()">
 					<span class="date">{{post.createdAt | formatDate}}</span>
-					<span class="postLikeSection" ng-click="createLike(post) && showLikeCount(post)">
+					<span class="postLikeSection" ng-click="toggleLike(post)">
 						<i class="fa-regular fa-heart be-pointer" title="Likes"></i>
-						{{post.post_likes || '0' }}
+						{{ post.likes }}
 					</span>
 				<span class="postCommentSection">
 				<span class="actionsSection" ng-show="post.user_id == currentUser">

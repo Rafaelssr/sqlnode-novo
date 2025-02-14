@@ -15,7 +15,6 @@ myApp.directive("customFeed", [
 
         const listPosts = () => {
           postService.listPosts().then((resp) => {
-            console.log(resp.data, "resp");
             scope.posts = resp.data;
           });
         };
@@ -27,7 +26,7 @@ myApp.directive("customFeed", [
             .LikeCount(post.id)
             .then((count) => {
               post.post_likes = count;
-              debugger;
+              console.log(count);
             })
             .catch((error) => {
               console.error("Error fetching like count:", error);
@@ -65,10 +64,9 @@ myApp.directive("customFeed", [
         const createLike = function (post) {
           const postId = post.id;
 
-          likeService
+          return likeService
             .LikePost(currentUser, postId)
             .then((likeResponse) => {
-              console.log(likeResponse);
               post.isLiked = likeResponse.data.liked;
               post.post_likes = likeResponse.data.like_count;
             })
@@ -77,6 +75,43 @@ myApp.directive("customFeed", [
             });
         };
 
+        const deleteLike = function (post) {
+          const postId = post.id;
+          return likeService
+            .DislikePost(currentUser, postId)
+            .then((dislikeResp) => {
+              console.log(dislikeResp, "dislikeResp");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        };
+
+        scope.toggleLike = function (post) {
+          if (post.isLiked) {
+            deleteLike(post)
+              .then(() => {
+                post.isLiked = false;
+                post.post_likes = Math.max(0, post.post_likes - 1);
+                showLikeCount(post);
+              })
+              .catch((error) => {
+                console.log("Error disliking post:", error);
+              });
+          } else {
+            createLike(post)
+              .then(() => {
+                post.isLiked = true;
+                post.postLikes = (post.post_likes || 0) + 1;
+                showLikeCount(post);
+              })
+              .catch((error) => {
+                console.log("Error liking post:", error);
+              });
+          }
+        };
+
+        scope.deleteLike = deleteLike;
         scope.showLikeCount = showLikeCount;
         scope.createLike = createLike;
         scope.onEditClick = onEditClick;
